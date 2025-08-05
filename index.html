@@ -338,13 +338,18 @@
       <h2 class="post-title">数值分析-2</h2>
       <article class="post-article">
         
-           迭代法：Jacobi 与 Gauss-Seidel
- 1. 定义与一般形式
-Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&amp;#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &amp;#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。
-由此，方程 $Ax&amp;#x3D;b$ 可以转化为 $(M-N)x&amp;#x3D;b$，进而得到迭代的一般形式：
-$$Mx^{(k+1)} &amp;#x3D; Nx^{(k)} + b
-$$$$x^{(k+1)} &amp;#x3D; M^{-1}Nx^{(k)} + M^{-1}b
-$$记迭代矩阵 $B &amp;#x3D; M^{-1}N
+          <h2 id="迭代法jacobi-与-gauss-seidel"><a class="markdownIt-Anchor" href="#迭代法jacobi-与-gauss-seidel"></a> 迭代法：Jacobi 与 Gauss-Seidel</h2>
+<h3 id="1-定义与一般形式"><a class="markdownIt-Anchor" href="#1-定义与一般形式"></a> 1. 定义与一般形式</h3>
+<p>Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。</p>
+<p>由此，方程 $Ax&#x3D;b$ 可以转化为 $(M-N)x&#x3D;b$，进而得到迭代的一般形式：</p>
+<p>$$Mx^{(k+1)} &#x3D; Nx^{(k)} + b
+$$</p><p>$$x^{(k+1)} &#x3D; M^{-1}Nx^{(k)} + M^{-1}b
+$$</p><p>记迭代矩阵 $B &#x3D; M^{-1}N$，常数向量 $f &#x3D; M^{-1}b$，则一般形式为：</p>
+<p>$$x^{(k+1)} &#x3D; Bx^{(k)} + f
+$$</p><h3 id="2-使用的先决条件"><a class="markdownIt-Anchor" href="#2-使用的先决条件"></a> 2. 使用的先决条件</h3>
+<p>为了保证迭代过程能够顺利进行，必须满足以下基本条件：</p>
+<ul>
+<li><strong>对角元素非零</strong>：对于矩阵 $A$ 的所有对角元素 $a_{ii}$，必须有 $a_{ii} \neq 0$。这是因为两种方法都需
         
       </article>
     </div>
@@ -375,13 +380,18 @@ $$记迭代矩阵 $B &amp;#x3D; M^{-1}N
       <h2 class="post-title">数值分析(1)</h2>
       <article class="post-article">
         
-           矩阵分解：LU分解与Cholesky分解
- 引言
-在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。
- 1. LU分解
- 1.1 定义
-LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Lower triangular matrix）和一个上三角矩阵U（Upper triangular matrix）的乘积。
-对于 $n \times n$ 矩阵 $A$，如果存在下三角矩阵 $L$ 和上三
+          <h2 id="矩阵分解lu分解与cholesky分解"><a class="markdownIt-Anchor" href="#矩阵分解lu分解与cholesky分解"></a> 矩阵分解：LU分解与Cholesky分解</h2>
+<h3 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h3>
+<p>在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。</p>
+<h2 id="1-lu分解"><a class="markdownIt-Anchor" href="#1-lu分解"></a> 1. LU分解</h2>
+<h3 id="11-定义"><a class="markdownIt-Anchor" href="#11-定义"></a> 1.1 定义</h3>
+<p>LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Lower triangular matrix）和一个上三角矩阵U（Upper triangular matrix）的乘积。</p>
+<p>对于 $n \times n$ 矩阵 $A$，如果存在下三角矩阵 $L$ 和上三角矩阵 $U$，使得：</p>
+<p>$$A &#x3D; LU
+$$</p><p>其中：</p>
+<ul>
+<li>
+<p>$L$ 是下三角矩阵：$L &#x3D; \begin{pmatrix} l_{11} &amp; 0 &amp; \cdots &amp; 0 \\ l_{21} &amp; l_{22} &amp; \cdots &amp; 0 \\ \vdots &
         
       </article>
     </div>
@@ -412,10 +422,9 @@ LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L�
       <h2 class="post-title">Hello World</h2>
       <article class="post-article">
         
-           Welcome to Hexo! This is your very first post. Check documentation to learn how to use.
-Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
- Quick Start
- Cr
+          <h2 id="welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><a class="markdownIt-Anchor" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"></a> Welcome to <a target="_blank" rel="noopener" href="http://zespia.tw/hexo">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="http://zespia.tw/hexo/docs">documentation</a> to learn how to use.</h2>
+<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start"><a class="m
         
       </article>
     </div>
@@ -687,7 +696,22 @@ Welcome to Hexo! This is your very first post. Check documentation for more info
 
     
       <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 延迟一下确保所有内容都加载完毕
+    setTimeout(function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }, 100);
+  });
+</script>
 
     
   </body>
