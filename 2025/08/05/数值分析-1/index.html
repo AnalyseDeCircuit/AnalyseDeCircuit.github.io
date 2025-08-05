@@ -1,0 +1,1058 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    数值分析(1) |
+    
+    Dimanche&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="矩阵分解：LU分解与Cholesky分解  引言 在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。  1. LU分解  1.1 定义 LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Low">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值分析(1)">
+<meta property="og:url" content="http://example.com/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-1/index.html">
+<meta property="og:site_name" content="Dimanche&#39;s Blog">
+<meta property="og:description" content="矩阵分解：LU分解与Cholesky分解  引言 在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。  1. LU分解  1.1 定义 LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Low">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-05T15:29:15.000Z">
+<meta property="article:modified_time" content="2025-08-05T16:30:05.303Z">
+<meta property="article:author" content="Dimanche">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Dimanche's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+    
+      
+        
+<link rel="stylesheet" href="https://npm.webcache.cn/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l&#x2F;9On385z&#x2F;&#x2F;&#x2F;+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+      
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/banner.webp" alt="数值分析(1)">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">数值分析(1)</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3lu%E5%88%86%E8%A7%A3%E4%B8%8Echolesky%E5%88%86%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text"> 矩阵分解：LU分解与Cholesky分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 引言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-lu%E5%88%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text"> 1. LU分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E5%AD%98%E5%9C%A8%E6%80%A7%E5%92%8C%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text"> 1.2 存在性和唯一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95%E4%B8%8Elu%E5%88%86%E8%A7%A3"><span class="toc-number">2.3.</span> <span class="toc-text"> 1.3 高斯消元法与LU分解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-doolittle%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text"> 1.4 Doolittle分解算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">2.5.</span> <span class="toc-text"> 1.5 时间复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E5%AE%9E%E9%99%85%E4%BE%8B%E5%AD%90"><span class="toc-number">2.6.</span> <span class="toc-text"> 1.6 实际例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-lu%E5%88%86%E8%A7%A3%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">2.7.</span> <span class="toc-text"> 1.7 LU分解求解线性方程组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E9%80%89%E4%B8%BB%E5%85%83lu%E5%88%86%E8%A7%A3"><span class="toc-number">2.8.</span> <span class="toc-text"> 1.8 选主元LU分解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-cholesky%E5%88%86%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text"> 2. Cholesky分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 2.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E5%AD%98%E5%9C%A8%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.2 存在性定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-cholesky%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text"> 2.3 Cholesky分解算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">3.4.</span> <span class="toc-text"> 2.4 时间复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-%E5%AE%9E%E9%99%85%E4%BE%8B%E5%AD%90"><span class="toc-number">3.5.</span> <span class="toc-text"> 2.5 实际例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%BA%94%E7%94%A8%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="toc-number">4.</span> <span class="toc-text"> 3. 应用与比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.1.</span> <span class="toc-text"> 3.1 应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83"><span class="toc-number">4.2.</span> <span class="toc-text"> 3.2 算法比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7%E8%80%83%E8%99%91"><span class="toc-number">4.3.</span> <span class="toc-text"> 3.3 数值稳定性考虑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E5%AE%9E%E7%8E%B0%E4%BC%98%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text"> 3.4 实现优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text"> 4. 总结</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Dimanche" class="lazyload">
+  <div class="sidebar-author-name">Dimanche</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/AnalyseDeCircuit itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-数值分析-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-08-05T15:29:15.000Z" itemprop="datePublished">2025-08-05</time>
+    <time style="display: none;" id="post-update-time">2025-08-06</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="矩阵分解lu分解与cholesky分解"><a class="markdownIt-Anchor" href="#矩阵分解lu分解与cholesky分解"></a> 矩阵分解：LU分解与Cholesky分解</h2>
+<h3 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h3>
+<p>在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。</p>
+<h2 id="1-lu分解"><a class="markdownIt-Anchor" href="#1-lu分解"></a> 1. LU分解</h2>
+<h3 id="11-定义"><a class="markdownIt-Anchor" href="#11-定义"></a> 1.1 定义</h3>
+<p>LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Lower triangular matrix）和一个上三角矩阵U（Upper triangular matrix）的乘积。</p>
+<p>对于 $n \times n$ 矩阵 $A$，如果存在下三角矩阵 $L$ 和上三角矩阵 $U$，使得：</p>
+<p>$$A &#x3D; LU
+$$</p><p>其中：</p>
+<ul>
+<li>
+<p>$L$ 是下三角矩阵：$L &#x3D; \begin{pmatrix} l_{11} &amp; 0 &amp; \cdots &amp; 0 \\ l_{21} &amp; l_{22} &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ l_{n1} &amp; l_{n2} &amp; \cdots &amp; l_{nn} \end{pmatrix}$</p>
+</li>
+<li>
+<p>$U$ 是上三角矩阵：$U &#x3D; \begin{pmatrix} u_{11} &amp; u_{12} &amp; \cdots &amp; u_{1n} \\ 0 &amp; u_{22} &amp; \cdots &amp; u_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; u_{nn} \end{pmatrix}$</p>
+</li>
+</ul>
+<h3 id="12-存在性和唯一性"><a class="markdownIt-Anchor" href="#12-存在性和唯一性"></a> 1.2 存在性和唯一性</h3>
+<p><strong>定理</strong>：设 $A$ 是 $n \times n$ 矩阵，如果 $A$ 的所有顺序主子式都非零，即：</p>
+<p>$$\det(A_k) \neq 0, \quad k &#x3D; 1, 2, \ldots, n-1
+$$</p><p>其中 $A_k$ 是 $A$ 的前 $k$ 行前 $k$ 列构成的子矩阵，则 $A$ 存在唯一的LU分解，且可以规定 $L$ 的对角元素全为1（称为Doolittle分解）或 $U$ 的对角元素全为1（称为Crout分解）。</p>
+<h3 id="13-高斯消元法与lu分解"><a class="markdownIt-Anchor" href="#13-高斯消元法与lu分解"></a> 1.3 高斯消元法与LU分解</h3>
+<p>LU分解实际上是高斯消元法的矩阵表示。在高斯消元过程中：</p>
+<ul>
+<li>$L$ 记录了消元过程中的乘数</li>
+<li>$U$ 是消元后得到的上三角矩阵</li>
+</ul>
+<h3 id="14-doolittle分解算法"><a class="markdownIt-Anchor" href="#14-doolittle分解算法"></a> 1.4 Doolittle分解算法</h3>
+<p>Doolittle分解假设 $L$ 的对角元素为1，算法步骤如下：</p>
+<p><strong>算法流程</strong>：</p>
+<ol>
+<li>初始化：$l_{ii} &#x3D; 1$ for $i &#x3D; 1, 2, \ldots, n$</li>
+<li>对于 $k &#x3D; 1, 2, \ldots, n$：
+<ul>
+<li>计算 $U$ 的第 $k$ 行：$u_{kj} &#x3D; a_{kj} - \sum_{s&#x3D;1}^{k-1} l_{ks}u_{sj}$ for $j &#x3D; k, k+1, \ldots, n$</li>
+<li>计算 $L$ 的第 $k$ 列：$l_{ik} &#x3D; \frac{a_{ik} - \sum_{s&#x3D;1}^{k-1} l_{is}u_{sk}}{u_{kk}}$ for $i &#x3D; k+1, k+2, \ldots, n$</li>
+</ul>
+</li>
+</ol>
+<p><strong>伪代码</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for k = 1 to n do</span><br><span class="line">    for j = k to n do</span><br><span class="line">        u[k][j] = a[k][j] - sum(l[k][s] * u[s][j] for s = 1 to k-1)</span><br><span class="line">    end for</span><br><span class="line">    for i = k+1 to n do</span><br><span class="line">        l[i][k] = (a[i][k] - sum(l[i][s] * u[s][k] for s = 1 to k-1)) / u[k][k]</span><br><span class="line">    end for</span><br><span class="line">end for</span><br></pre></td></tr></table></figure>
+<h3 id="15-时间复杂度"><a class="markdownIt-Anchor" href="#15-时间复杂度"></a> 1.5 时间复杂度</h3>
+<p>LU分解的时间复杂度为 $O(n^3)$。具体分析：</p>
+<ul>
+<li>外层循环执行 $n$ 次</li>
+<li>对于第 $k$ 步，计算 $U$ 的第 $k$ 行需要 $O(n-k+1) \times O(k) &#x3D; O(k(n-k+1))$ 次运算</li>
+<li>计算 $L$ 的第 $k$ 列需要 $O(n-k) \times O(k) &#x3D; O(k(n-k))$ 次运算</li>
+<li>总运算次数：$\sum_{k&#x3D;1}^{n} O(k(n-k+1)) + O(k(n-k)) &#x3D; O(n^3)$</li>
+</ul>
+<p>精确地说，需要约 $\frac{2n^3}{3}$ 次浮点运算。</p>
+<h3 id="16-实际例子"><a class="markdownIt-Anchor" href="#16-实际例子"></a> 1.6 实际例子</h3>
+<p><strong>例1</strong>：对矩阵 $A &#x3D; \begin{pmatrix} 2 &amp; 1 &amp; 3 \\ 4 &amp; 3 &amp; 1 \\ 6 &amp; 5 &amp; 2 \end{pmatrix}$ 进行LU分解。</p>
+<p><strong>解</strong>：使用Doolittle分解（$L$ 的对角元素为1）</p>
+<p><strong>第1步</strong> ($k&#x3D;1$)：</p>
+<ul>
+<li>计算 $U$ 的第1行：
+<ul>
+<li>$u_{11} &#x3D; a_{11} &#x3D; 2$</li>
+<li>$u_{12} &#x3D; a_{12} &#x3D; 1$</li>
+<li>$u_{13} &#x3D; a_{13} &#x3D; 3$</li>
+</ul>
+</li>
+<li>计算 $L$ 的第1列：
+<ul>
+<li>$l_{21} &#x3D; \frac{a_{21}}{u_{11}} &#x3D; \frac{4}{2} &#x3D; 2$</li>
+<li>$l_{31} &#x3D; \frac{a_{31}}{u_{11}} &#x3D; \frac{6}{2} &#x3D; 3$</li>
+</ul>
+</li>
+</ul>
+<p><strong>第2步</strong> ($k&#x3D;2$)：</p>
+<ul>
+<li>计算 $U$ 的第2行：
+<ul>
+<li>$u_{22} &#x3D; a_{22} - l_{21}u_{12} &#x3D; 3 - 2 \times 1 &#x3D; 1$</li>
+<li>$u_{23} &#x3D; a_{23} - l_{21}u_{13} &#x3D; 1 - 2 \times 3 &#x3D; -5$</li>
+</ul>
+</li>
+<li>计算 $L$ 的第2列：
+<ul>
+<li>$l_{32} &#x3D; \frac{a_{32} - l_{31}u_{12}}{u_{22}} &#x3D; \frac{5 - 3 \times 1}{1} &#x3D; 2$</li>
+</ul>
+</li>
+</ul>
+<p><strong>第3步</strong> ($k&#x3D;3$)：</p>
+<ul>
+<li>计算 $U$ 的第3行：
+<ul>
+<li>$u_{33} &#x3D; a_{33} - l_{31}u_{13} - l_{32}u_{23} &#x3D; 2 - 3 \times 3 - 2 \times (-5) &#x3D; 1$</li>
+</ul>
+</li>
+</ul>
+<p><strong>结果</strong>：</p>
+<p>$$L &#x3D; \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 2 &amp; 1 &amp; 0 \\ 3 &amp; 2 &amp; 1 \end{pmatrix}, \quad U &#x3D; \begin{pmatrix} 2 &amp; 1 &amp; 3 \\ 0 &amp; 1 &amp; -5 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}
+$$</p><p><strong>验证</strong>：$LU &#x3D; \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 2 &amp; 1 &amp; 0 \\ 3 &amp; 2 &amp; 1 \end{pmatrix} \begin{pmatrix} 2 &amp; 1 &amp; 3 \\ 0 &amp; 1 &amp; -5 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} &#x3D; \begin{pmatrix} 2 &amp; 1 &amp; 3 \\ 4 &amp; 3 &amp; 1 \\ 6 &amp; 5 &amp; 2 \end{pmatrix} &#x3D; A$ ✓</p>
+<h3 id="17-lu分解求解线性方程组"><a class="markdownIt-Anchor" href="#17-lu分解求解线性方程组"></a> 1.7 LU分解求解线性方程组</h3>
+<p>对于线性方程组 $Ax &#x3D; b$，如果 $A &#x3D; LU$，则：</p>
+<p>$$LUx &#x3D; b
+$$</p><p>可以分两步求解：</p>
+<ol>
+<li><strong>前向替换</strong>：求解 $Ly &#x3D; b$</li>
+<li><strong>后向替换</strong>：求解 $Ux &#x3D; y$</li>
+</ol>
+<p><strong>例2</strong>：利用上例的LU分解求解 $Ax &#x3D; \begin{pmatrix} 10 \\ 14 \\ 20 \end{pmatrix}$</p>
+<p><strong>第1步</strong>：前向替换求解 $Ly &#x3D; b$</p>
+<p>$$\begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 2 &amp; 1 &amp; 0 \\ 3 &amp; 2 &amp; 1 \end{pmatrix} \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} &#x3D; \begin{pmatrix} 10 \\ 14 \\ 20 \end{pmatrix}
+$$</p><ul>
+<li>$y_1 &#x3D; 10$</li>
+<li>$y_2 &#x3D; 14 - 2y_1 &#x3D; 14 - 20 &#x3D; -6$</li>
+<li>$y_3 &#x3D; 20 - 3y_1 - 2y_2 &#x3D; 20 - 30 + 12 &#x3D; 2$</li>
+</ul>
+<p><strong>第2步</strong>：后向替换求解 $Ux &#x3D; y$</p>
+<p>$$\begin{pmatrix} 2 &amp; 1 &amp; 3 \\ 0 &amp; 1 &amp; -5 \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} &#x3D; \begin{pmatrix} 10 \\ -6 \\ 2 \end{pmatrix}
+$$</p><ul>
+<li>$x_3 &#x3D; 2$</li>
+<li>$x_2 &#x3D; -6 + 5x_3 &#x3D; -6 + 10 &#x3D; 4$</li>
+<li>$x_1 &#x3D; \frac{10 - x_2 - 3x_3}{2} &#x3D; \frac{10 - 4 - 6}{2} &#x3D; 0$</li>
+</ul>
+<p><strong>解</strong>：$x &#x3D; \begin{pmatrix} 0 \\ 4 \\ 2 \end{pmatrix}$</p>
+<h3 id="18-选主元lu分解"><a class="markdownIt-Anchor" href="#18-选主元lu分解"></a> 1.8 选主元LU分解</h3>
+<p>当矩阵的某个主元素很小时，会导致数值不稳定。选主元LU分解通过行交换来选择较大的主元素：</p>
+<p>$$PA &#x3D; LU
+$$</p><p>其中 $P$ 是置换矩阵。</p>
+<h2 id="2-cholesky分解"><a class="markdownIt-Anchor" href="#2-cholesky分解"></a> 2. Cholesky分解</h2>
+<h3 id="21-定义"><a class="markdownIt-Anchor" href="#21-定义"></a> 2.1 定义</h3>
+<p>Cholesky分解是针对正定矩阵的一种特殊LU分解。对于对称正定矩阵 $A$，存在唯一的下三角矩阵 $L$（对角元素为正），使得：</p>
+<p>$$A &#x3D; LL^T
+$$</p><p>其中 $L$ 称为Cholesky因子。</p>
+<h3 id="22-存在性定理"><a class="markdownIt-Anchor" href="#22-存在性定理"></a> 2.2 存在性定理</h3>
+<p><strong>定理</strong>：设 $A$ 是 $n \times n$ 实对称矩阵，则 $A$ 可以进行Cholesky分解当且仅当 $A$ 是正定矩阵。</p>
+<p><strong>证明要点</strong>：</p>
+<ul>
+<li>必要性：如果 $A &#x3D; LL^T$，则对任意非零向量 $x$，有 $x^TAx &#x3D; x^TLL^Tx &#x3D; ||L^Tx||^2 &gt; 0$</li>
+<li>充分性：可以通过构造性证明，利用正定矩阵的性质逐步构造 $L$</li>
+</ul>
+<h3 id="23-cholesky分解算法"><a class="markdownIt-Anchor" href="#23-cholesky分解算法"></a> 2.3 Cholesky分解算法</h3>
+<p><strong>算法步骤</strong>：<br />
+对于 $k &#x3D; 1, 2, \ldots, n$：</p>
+<ol>
+<li>计算对角元素：$l_{kk} &#x3D; \sqrt{a_{kk} - \sum_{j&#x3D;1}^{k-1} l_{kj}^2}$</li>
+<li>计算第 $k$ 列的其他元素：$l_{ik} &#x3D; \frac{a_{ik} - \sum_{j&#x3D;1}^{k-1} l_{ij}l_{kj}}{l_{kk}}$ for $i &#x3D; k+1, \ldots, n$</li>
+</ol>
+<p><strong>伪代码</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for k = 1 to n do</span><br><span class="line">    l[k][k] = sqrt(a[k][k] - sum(l[k][j]^2 for j = 1 to k-1))</span><br><span class="line">    for i = k+1 to n do</span><br><span class="line">        l[i][k] = (a[i][k] - sum(l[i][j] * l[k][j] for j = 1 to k-1)) / l[k][k]</span><br><span class="line">    end for</span><br><span class="line">end for</span><br></pre></td></tr></table></figure>
+<h3 id="24-时间复杂度"><a class="markdownIt-Anchor" href="#24-时间复杂度"></a> 2.4 时间复杂度</h3>
+<p>Cholesky分解的时间复杂度为 $O(n^3)$，但常数因子比LU分解小约一半。具体需要约 $\frac{n^3}{3}$ 次浮点运算和 $n$ 次开方运算。</p>
+<p>由于利用了矩阵的对称性，Cholesky分解比一般的LU分解更高效：</p>
+<ul>
+<li>存储空间：只需存储下三角部分</li>
+<li>计算量：约为LU分解的一半</li>
+<li>数值稳定性：更好，不需要选主元</li>
+</ul>
+<h3 id="25-实际例子"><a class="markdownIt-Anchor" href="#25-实际例子"></a> 2.5 实际例子</h3>
+<p><strong>例3</strong>：对矩阵 $A &#x3D; \begin{pmatrix} 4 &amp; 2 &amp; 1 \\ 2 &amp; 5 &amp; 3 \\ 1 &amp; 3 &amp; 6 \end{pmatrix}$ 进行Cholesky分解。</p>
+<p>首先验证 $A$ 是正定矩阵（所有顺序主子式为正）：</p>
+<ul>
+<li>$M_1 &#x3D; 4 &gt; 0$</li>
+<li>$M_2 &#x3D; \det\begin{pmatrix} 4 &amp; 2 \\ 2 &amp; 5 \end{pmatrix} &#x3D; 20 - 4 &#x3D; 16 &gt; 0$</li>
+<li>$M_3 &#x3D; \det(A) &#x3D; 4(5 \times 6 - 3 \times 3) - 2(2 \times 6 - 1 \times 3) + 1(2 \times 3 - 1 \times 5) &#x3D; 4 \times 21 - 2 \times 9 + 1 \times 1 &#x3D; 67 &gt; 0$</li>
+</ul>
+<p><strong>第1步</strong> ($k&#x3D;1$)：</p>
+<ul>
+<li>$l_{11} &#x3D; \sqrt{a_{11}} &#x3D; \sqrt{4} &#x3D; 2$</li>
+<li>$l_{21} &#x3D; \frac{a_{21}}{l_{11}} &#x3D; \frac{2}{2} &#x3D; 1$</li>
+<li>$l_{31} &#x3D; \frac{a_{31}}{l_{11}} &#x3D; \frac{1}{2}$</li>
+</ul>
+<p><strong>第2步</strong> ($k&#x3D;2$)：</p>
+<ul>
+<li>$l_{22} &#x3D; \sqrt{a_{22} - l_{21}^2} &#x3D; \sqrt{5 - 1^2} &#x3D; \sqrt{4} &#x3D; 2$</li>
+<li>$l_{32} &#x3D; \frac{a_{32} - l_{31}l_{21}}{l_{22}} &#x3D; \frac{3 - \frac{1}{2} \times 1}{2} &#x3D; \frac{5&#x2F;2}{2} &#x3D; \frac{5}{4}$</li>
+</ul>
+<p><strong>第3步</strong> ($k&#x3D;3$)：</p>
+<ul>
+<li>$l_{33} &#x3D; \sqrt{a_{33} - l_{31}^2 - l_{32}^2} &#x3D; \sqrt{6 - \frac{1}{4} - \frac{25}{16}} &#x3D; \sqrt{6 - \frac{4 + 25}{16}} &#x3D; \sqrt{\frac{96 - 29}{16}} &#x3D; \sqrt{\frac{67}{16}} &#x3D; \frac{\sqrt{67}}{4}$</li>
+</ul>
+<p><strong>结果</strong>：</p>
+<p>$$L &#x3D; \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ \frac{1}{2} &amp; \frac{5}{4} &amp; \frac{\sqrt{67}}{4} \end{pmatrix}
+$$</p><p><strong>验证</strong>：</p>
+<p>$$LL^T &#x3D; \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 0 \\ \frac{1}{2} &amp; \frac{5}{4} &amp; \frac{\sqrt{67}}{4} \end{pmatrix} \begin{pmatrix} 2 &amp; 1 &amp; \frac{1}{2} \\ 0 &amp; 2 &amp; \frac{5}{4} \\ 0 &amp; 0 &amp; \frac{\sqrt{67}}{4} \end{pmatrix} &#x3D; \begin{pmatrix} 4 &amp; 2 &amp; 1 \\ 2 &amp; 5 &amp; 3 \\ 1 &amp; 3 &amp; 6 \end{pmatrix} &#x3D; A$$ ✓
+
+### 2.6 Cholesky分解求解线性方程组
+
+对于对称正定线性方程组 $Ax &#x3D; b$，如果 $A &#x3D; LL^T$，则：
+$$LL^Tx &#x3D; b$$</p><p>求解步骤：</p>
+<ol>
+<li><strong>前向替换</strong>：求解 $Ly &#x3D; b$</li>
+<li><strong>后向替换</strong>：求解 $L^Tx &#x3D; y$</li>
+</ol>
+<p><strong>例4</strong>：利用上例的Cholesky分解求解 $Ax &#x3D; \begin{pmatrix} 9 \\ 13 \\ 16 \end{pmatrix}$</p>
+<p><strong>第1步</strong>：前向替换求解 $Ly &#x3D; b$</p>
+<ul>
+<li>$y_1 &#x3D; \frac{9}{2}$</li>
+<li>$y_2 &#x3D; \frac{13 - 1 \times \frac{9}{2}}{2} &#x3D; \frac{13 - 4.5}{2} &#x3D; \frac{17}{4}$</li>
+<li>$y_3 &#x3D; \frac{16 - \frac{1}{2} \times \frac{9}{2} - \frac{5}{4} \times \frac{17}{4}}{\frac{\sqrt{67}}{4}} &#x3D; \frac{\sqrt{67}}{4}$</li>
+</ul>
+<p><strong>第2步</strong>：后向替换求解 $L^Tx &#x3D; y$（具体计算略）</p>
+<h2 id="3-应用与比较"><a class="markdownIt-Anchor" href="#3-应用与比较"></a> 3. 应用与比较</h2>
+<h3 id="31-应用场景"><a class="markdownIt-Anchor" href="#31-应用场景"></a> 3.1 应用场景</h3>
+<p><strong>LU分解的应用</strong>：</p>
+<ul>
+<li>求解一般线性方程组</li>
+<li>计算矩阵的行列式：$\det(A) &#x3D; \det(L)\det(U) &#x3D; \prod_{i&#x3D;1}^n u_{ii}$</li>
+<li>计算矩阵的逆</li>
+<li>求解多个右端向量的线性方程组</li>
+</ul>
+<p><strong>Cholesky分解的应用</strong>：</p>
+<ul>
+<li>求解对称正定线性方程组</li>
+<li>最小二乘问题：$A^TAx &#x3D; A^Tb$，其中 $A^TA$ 是对称正定的</li>
+<li>蒙特卡罗模拟中生成多元正态分布随机数</li>
+<li>优化问题中的海塞矩阵分解</li>
+</ul>
+<h3 id="32-算法比较"><a class="markdownIt-Anchor" href="#32-算法比较"></a> 3.2 算法比较</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>LU分解</th>
+<th>Cholesky分解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>适用矩阵</td>
+<td>一般方阵</td>
+<td>对称正定矩阵</td>
+</tr>
+<tr>
+<td>时间复杂度</td>
+<td>$O(n^3)$ ($\frac{2n^3}{3}$ 次运算)</td>
+<td>$O(n^3)$ ($\frac{n^3}{3}$ 次运算)</td>
+</tr>
+<tr>
+<td>存储需求</td>
+<td>$n^2$</td>
+<td>$\frac{n(n+1)}{2}$</td>
+</tr>
+<tr>
+<td>数值稳定性</td>
+<td>可能需要选主元</td>
+<td>天然稳定</td>
+</tr>
+<tr>
+<td>唯一性</td>
+<td>需要额外约束</td>
+<td>唯一（对角元为正）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-数值稳定性考虑"><a class="markdownIt-Anchor" href="#33-数值稳定性考虑"></a> 3.3 数值稳定性考虑</h3>
+<p><strong>LU分解的数值问题</strong>：</p>
+<ul>
+<li>当主元素很小时，会放大舍入误差</li>
+<li>解决方案：部分选主元或完全选主元</li>
+</ul>
+<p><strong>Cholesky分解的优势</strong>：</p>
+<ul>
+<li>正定矩阵保证了所有主元为正</li>
+<li>不需要选主元策略</li>
+<li>数值稳定性好</li>
+</ul>
+<h3 id="34-实现优化"><a class="markdownIt-Anchor" href="#34-实现优化"></a> 3.4 实现优化</h3>
+<p><strong>内存访问优化</strong>：</p>
+<ul>
+<li>分块算法：减少Cache miss</li>
+<li>原地分解：节省存储空间</li>
+</ul>
+<p><strong>并行化</strong>：</p>
+<ul>
+<li>LU分解可以进行列并行化</li>
+<li>Cholesky分解可以利用对称性进行并行化</li>
+</ul>
+<h2 id="4-总结"><a class="markdownIt-Anchor" href="#4-总结"></a> 4. 总结</h2>
+<ol>
+<li>
+<p><strong>LU分解</strong>是矩阵分解的基础，适用于一般方阵，通过将矩阵分解为下三角矩阵和上三角矩阵的乘积来简化线性方程组的求解。</p>
+</li>
+<li>
+<p><strong>Cholesky分解</strong>是LU分解在对称正定矩阵上的特化，具有更好的数值稳定性和计算效率。</p>
+</li>
+<li>
+<p>两种分解都有 $O(n^3)$ 的时间复杂度，但Cholesky分解的常数因子更小。</p>
+</li>
+<li>
+<p>在实际应用中，应根据矩阵的性质选择合适的分解方法：</p>
+<ul>
+<li>一般矩阵选择LU分解（可能需要选主元）</li>
+<li>对称正定矩阵优先选择Cholesky分解</li>
+</ul>
+</li>
+<li>
+<p>这些分解方法是数值线性代数的基础，在科学计算、工程应用和机器学习中有广泛的应用。</p>
+</li>
+</ol>
+<p>通过掌握这两种矩阵分解方法，我们可以更有效地解决各种线性代数问题，为进一步学习更高级的数值方法奠定坚实的基础。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="数值分析-2" class="lazyload">
+          
+        
+        <a href="/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%EF%BC%882%EF%BC%89/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            数值分析-2
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Hello World" class="lazyload">
+        
+      
+      <a href="/2025/08/05/hello-world/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          Hello World
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Dimanche
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        4.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:20
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3lu%E5%88%86%E8%A7%A3%E4%B8%8Echolesky%E5%88%86%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text"> 矩阵分解：LU分解与Cholesky分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 引言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-lu%E5%88%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text"> 1. LU分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text"> 1.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E5%AD%98%E5%9C%A8%E6%80%A7%E5%92%8C%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text"> 1.2 存在性和唯一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95%E4%B8%8Elu%E5%88%86%E8%A7%A3"><span class="toc-number">2.3.</span> <span class="toc-text"> 1.3 高斯消元法与LU分解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-doolittle%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text"> 1.4 Doolittle分解算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">2.5.</span> <span class="toc-text"> 1.5 时间复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E5%AE%9E%E9%99%85%E4%BE%8B%E5%AD%90"><span class="toc-number">2.6.</span> <span class="toc-text"> 1.6 实际例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-lu%E5%88%86%E8%A7%A3%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">2.7.</span> <span class="toc-text"> 1.7 LU分解求解线性方程组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E9%80%89%E4%B8%BB%E5%85%83lu%E5%88%86%E8%A7%A3"><span class="toc-number">2.8.</span> <span class="toc-text"> 1.8 选主元LU分解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-cholesky%E5%88%86%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text"> 2. Cholesky分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 2.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E5%AD%98%E5%9C%A8%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text"> 2.2 存在性定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-cholesky%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text"> 2.3 Cholesky分解算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">3.4.</span> <span class="toc-text"> 2.4 时间复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-%E5%AE%9E%E9%99%85%E4%BE%8B%E5%AD%90"><span class="toc-number">3.5.</span> <span class="toc-text"> 2.5 实际例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%BA%94%E7%94%A8%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="toc-number">4.</span> <span class="toc-text"> 3. 应用与比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.1.</span> <span class="toc-text"> 3.1 应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83"><span class="toc-number">4.2.</span> <span class="toc-text"> 3.2 算法比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7%E8%80%83%E8%99%91"><span class="toc-number">4.3.</span> <span class="toc-text"> 3.3 数值稳定性考虑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E5%AE%9E%E7%8E%B0%E4%BC%98%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text"> 3.4 实现优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text"> 4. 总结</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Dimanche" class="lazyload">
+  <div class="sidebar-author-name">Dimanche</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/AnalyseDeCircuit itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Dimanche",
+          title: "数值分析(1)",
+          url: "http://example.com/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-1/",
+          excerpt: "",
+          description: "",
+          stripContent: " 矩阵分解：LU分解与Cholesky分解  引言 在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。  1. LU分解  1.1 定义 LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Lower triangular matrix）和一个上三角矩阵U（Upper triangular ma",
+          date: "Tue Aug 05 2025 23:29:15 GMT+0800",
+          updated: "Wed Aug 06 2025 00:30:05 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF&#x2F;RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh&#x2F;OJfpU0jr6" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

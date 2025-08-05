@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   
   <title>
-    Hello World |
+    数值分析-2 |
     
     Dimanche&#39;s Blog
   </title>
@@ -35,16 +35,17 @@
 
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use. Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when">
+    <meta name="description" content="迭代法：Jacobi 与 Gauss-Seidel  1. 定义与一般形式 Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。 由此，方程 $Ax&#x3D;b$ 可以转化为 $(M-N)x&#x3D;b$，进而得到迭代的一般形式： $$Mx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2025/08/05/hello-world/index.html">
+<meta property="og:title" content="数值分析-2">
+<meta property="og:url" content="http://example.com/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%EF%BC%882%EF%BC%89/index.html">
 <meta property="og:site_name" content="Dimanche&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use. Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when">
+<meta property="og:description" content="迭代法：Jacobi 与 Gauss-Seidel  1. 定义与一般形式 Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。 由此，方程 $Ax&#x3D;b$ 可以转化为 $(M-N)x&#x3D;b$，进而得到迭代的一般形式： $$Mx">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-08-05T02:38:18.265Z">
+<meta property="article:published_time" content="2025-08-05T15:50:20.000Z">
+<meta property="article:modified_time" content="2025-08-05T16:30:05.303Z">
 <meta property="article:author" content="Dimanche">
+<meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
   
   
@@ -198,7 +199,7 @@
           
         </picture>
         
-          <img  fetchpriority="high" src="/images/banner.webp" alt="Hello World">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="数值分析-2">
         
       
     
@@ -209,7 +210,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">Hello World</h1>
+            <h1 data-aos="slide-up">数值分析-2</h1>
           </a>
         
       
@@ -236,7 +237,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><span class="toc-number">1.</span> <span class="toc-text"> Welcome to Hexo! This is your very first post. Check documentation to learn how to use.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-number">2.</span> <span class="toc-text"> Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-new-post"><span class="toc-number">2.1.</span> <span class="toc-text"> Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-server"><span class="toc-number">2.2.</span> <span class="toc-text"> Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate-static-files"><span class="toc-number">2.3.</span> <span class="toc-text"> Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-remote-sites"><span class="toc-number">2.4.</span> <span class="toc-text"> Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95jacobi-%E4%B8%8E-gauss-seidel"><span class="toc-number">1.</span> <span class="toc-text"> 迭代法：Jacobi 与 Gauss-Seidel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 1. 定义与一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text"> 2. 使用的先决条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%94%B6%E6%95%9B%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text"> 3. 收敛条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7%E5%AF%B9%E6%AF%94"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 收敛性对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-number">1.4.</span> <span class="toc-text"> 4. Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#41-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 4.1 定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 4.2 迭代算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43-%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 4.3 一般形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-number">1.5.</span> <span class="toc-text"> 5. Gauss-Seidel 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#51-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 5.1 定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 5.2 迭代算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#53-%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 5.3 一般形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%80%BB%E7%BB%93%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 6. 总结与比较</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -332,13 +333,13 @@
   
 </aside>
 
-          <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-数值分析（2）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
-    <time datetime="2025-08-04T16:00:00.000Z" itemprop="datePublished">2025-08-05</time>
-    <time style="display: none;" id="post-update-time">2025-08-05</time>
+    <time datetime="2025-08-05T15:50:20.000Z" itemprop="datePublished">2025-08-05</time>
+    <time style="display: none;" id="post-update-time">2025-08-06</time>
   </span>
 </div>
 
@@ -351,21 +352,148 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><a class="markdownIt-Anchor" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"></a> Welcome to <a target="_blank" rel="noopener" href="http://zespia.tw/hexo">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="http://zespia.tw/hexo/docs">documentation</a> to learn how to use.</h2>
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="迭代法jacobi-与-gauss-seidel"><a class="markdownIt-Anchor" href="#迭代法jacobi-与-gauss-seidel"></a> 迭代法：Jacobi 与 Gauss-Seidel</h2>
+<h3 id="1-定义与一般形式"><a class="markdownIt-Anchor" href="#1-定义与一般形式"></a> 1. 定义与一般形式</h3>
+<p>Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。</p>
+<p>由此，方程 $Ax&#x3D;b$ 可以转化为 $(M-N)x&#x3D;b$，进而得到迭代的一般形式：</p>
+<p>$$Mx^{(k+1)} &#x3D; Nx^{(k)} + b
+$$</p><p>$$x^{(k+1)} &#x3D; M^{-1}Nx^{(k)} + M^{-1}b
+$$</p><p>记迭代矩阵 $B &#x3D; M^{-1}N$，常数向量 $f &#x3D; M^{-1}b$，则一般形式为：</p>
+<p>$$x^{(k+1)} &#x3D; Bx^{(k)} + f
+$$</p><h3 id="2-使用的先决条件"><a class="markdownIt-Anchor" href="#2-使用的先决条件"></a> 2. 使用的先决条件</h3>
+<p>为了保证迭代过程能够顺利进行，必须满足以下基本条件：</p>
+<ul>
+<li><strong>对角元素非零</strong>：对于矩阵 $A$ 的所有对角元素 $a_{ii}$，必须有 $a_{ii} \neq 0$。这是因为两种方法都需要用对角元素作为分母。</li>
+</ul>
+<h3 id="3-收敛条件"><a class="markdownIt-Anchor" href="#3-收敛条件"></a> 3. 收敛条件</h3>
+<p>迭代法是否收敛，即迭代序列 $\{x^{(k)}\}$ 是否收敛于真实解 $x^*$，取决于迭代矩阵 $B$ 的性质。</p>
+<ul>
+<li>
+<p><strong>充分必要条件</strong>：<br />
+迭代法收敛的充分必要条件是迭代矩阵 $B$ 的谱半径 $\rho(B) &lt; 1$。谱半径定义为矩阵特征值的最大绝对值，即 $\rho(B) &#x3D; \max_i |\lambda_i|$。</p>
+</li>
+<li>
+<p><strong>充分不必要条件</strong>（更容易判断）：</p>
+<ol>
+<li><strong>严格对角占优</strong>：如果矩阵 $A$ 是严格对角占优的，即对于每一行，对角元素的绝对值大于该行其他元素绝对值之和：<p>$$|a_{ii}| &gt; \sum_{j \neq i} |a_{ij}|, \quad \forall i&#x3D;1, \dots, n
+$$</p>则Jacobi和Gauss-Seidel迭代法都收敛。</li>
+<li><strong>对称正定</strong>：如果矩阵 $A$ 是对称正定矩阵，则Gauss-Seidel迭代法收敛。</li>
+</ol>
+</li>
+<li>
+<p><strong>必要条件</strong>：<br />
+如果迭代法收敛，那么必然有 $\rho(B) &lt; 1$。这是收敛的最低要求。</p>
+</li>
+</ul>
+<h4 id="收敛性对比"><a class="markdownIt-Anchor" href="#收敛性对比"></a> 收敛性对比</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">条件</th>
+<th style="text-align:left">Jacobi</th>
+<th style="text-align:left">Gauss-Seidel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>严格对角占优</strong></td>
+<td style="text-align:left">收敛</td>
+<td style="text-align:left">收敛</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>对称正定</strong></td>
+<td style="text-align:left">不一定收敛</td>
+<td style="text-align:left">收敛</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>谱半径小于1</strong></td>
+<td style="text-align:left">收敛</td>
+<td style="text-align:left">收敛</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-jacobi-迭代"><a class="markdownIt-Anchor" href="#4-jacobi-迭代"></a> 4. Jacobi 迭代</h3>
+<h4 id="41-定义"><a class="markdownIt-Anchor" href="#41-定义"></a> 4.1 定义</h4>
+<p>Jacobi迭代法的思想是，在第 $k+1$ 次迭代中，计算 $x_i^{(k+1)}$ 时，所有分量都使用第 $k$ 次的迭代结果 $x^{(k)}$。</p>
+<p>我们将矩阵 $A$ 分解为 $A &#x3D; D - L - U$，其中：</p>
+<p>$$D &#x3D; \begin{pmatrix}
+a_{11} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; a_{22} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; a_{nn}
+\end{pmatrix}
+$$</p><p>$$L &#x3D; \begin{pmatrix}
+0 &amp; 0 &amp; \cdots &amp; 0 \\
+-a_{21} &amp; 0 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+-a_{n1} &amp; -a_{n2} &amp; \cdots &amp; 0
+\end{pmatrix}, \quad
+U &#x3D; \begin{pmatrix}
+0 &amp; -a_{12} &amp; \cdots &amp; -a_{1n} \\
+0 &amp; 0 &amp; \cdots &amp; -a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; 0
+\end{pmatrix}
+$$</p><h4 id="42-迭代算法"><a class="markdownIt-Anchor" href="#42-迭代算法"></a> 4.2 迭代算法</h4>
+<p>将分解代入 $Ax&#x3D;b$：</p>
+<p>$$(D-L-U)x &#x3D; b \implies Dx &#x3D; (L+U)x + b
+$$</p><p>由此得到Jacobi迭代的矩阵形式：</p>
+<p>$$x^{(k+1)} &#x3D; D^{-1}(L+U)x^{(k)} + D^{-1}b
+$$</p><p>其分量形式为：</p>
+<p>$$x_i^{(k+1)} &#x3D; \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij}x_j^{(k)} \right), \quad i&#x3D;1, \dots, n
+$$</p><h4 id="43-一般形式"><a class="markdownIt-Anchor" href="#43-一般形式"></a> 4.3 一般形式</h4>
+<ul>
+<li><strong>迭代矩阵</strong>：$B_J &#x3D; D^{-1}(L+U)$</li>
+<li><strong>常数向量</strong>：$f_J &#x3D; D^{-1}b$</li>
+</ul>
+<h3 id="5-gauss-seidel-迭代"><a class="markdownIt-Anchor" href="#5-gauss-seidel-迭代"></a> 5. Gauss-Seidel 迭代</h3>
+<h4 id="51-定义"><a class="markdownIt-Anchor" href="#51-定义"></a> 5.1 定义</h4>
+<p>Gauss-Seidel迭代法是对Jacobi迭代的改进。在计算 $x_i^{(k+1)}$ 时，它会立即使用在同一次迭代中已经计算出的新分量 $x_1^{(k+1)}, \dots, x_{i-1}^{(k+1)}$。</p>
+<h4 id="52-迭代算法"><a class="markdownIt-Anchor" href="#52-迭代算法"></a> 5.2 迭代算法</h4>
+<p>基于同样的分解 $A &#x3D; D-L-U$，我们将方程整理为：</p>
+<p>$$(D-L)x &#x3D; Ux + b
+$$</p><p>由此得到Gauss-Seidel迭代的矩阵形式：</p>
+<p>$$x^{(k+1)} &#x3D; (D-L)^{-1}Ux^{(k)} + (D-L)^{-1}b
+$$</p><p>其分量形式为：</p>
+<p>$$x_i^{(k+1)} &#x3D; \frac{1}{a_{ii}} \left( b_i - \sum_{j&#x3D;1}^{i-1} a_{ij}x_j^{(k+1)} - \sum_{j&#x3D;i+1}^{n} a_{ij}x_j^{(k)} \right), \quad i&#x3D;1, \dots, n
+$$</p><h4 id="53-一般形式"><a class="markdownIt-Anchor" href="#53-一般形式"></a> 5.3 一般形式</h4>
+<ul>
+<li><strong>迭代矩阵</strong>：$B_{GS} &#x3D; (D-L)^{-1}U$</li>
+<li><strong>常数向量</strong>：$f_{GS} &#x3D; (D-L)^{-1}b$</li>
+</ul>
+<h3 id="6-总结与比较"><a class="markdownIt-Anchor" href="#6-总结与比较"></a> 6. 总结与比较</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">Jacobi 迭代</th>
+<th style="text-align:left">Gauss-Seidel 迭代</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>核心思想</strong></td>
+<td style="text-align:left">所有分量均使用上一轮的旧值</td>
+<td style="text-align:left">总是使用当前可用的最新值</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>收敛速度</strong></td>
+<td style="text-align:left">通常较慢</td>
+<td style="text-align:left">通常比Jacobi快</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>并行性</strong></td>
+<td style="text-align:left">非常好，所有分量可同时计算</td>
+<td style="text-align:left">较差，分量计算有串行依赖</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>实现</strong></td>
+<td style="text-align:left">简单，需要存储两份向量（新旧）</td>
+<td style="text-align:left">略复杂，可原地更新（节省空间）</td>
+</tr>
+</tbody>
+</table>
+<p>在实际应用中，如果收敛，Gauss-Seidel通常是更好的选择。然而，Jacobi的并行特性使其在大规模并行计算中仍有应用价值。这两种方法也为更高级的迭代法（如SOR法）奠定了基础。</p>
 
       
     </div>
@@ -379,29 +507,31 @@
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
 
     </footer>
   </div>
   
   <nav id="article-nav" data-aos="fade-up">
     
-      
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          
-          
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="数值分析(1)" class="lazyload">
-          
-        
-        <a href="/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-1/"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-          
-            数值分析(1)
-          
-        </h3>
-      </div>
     
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="数值分析(1)" class="lazyload">
+        
+      
+      <a href="/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-1/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          数值分析(1)
+        
+      </h3>
+    </div>
     
   </nav>
 
@@ -480,7 +610,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><span class="toc-number">1.</span> <span class="toc-text"> Welcome to Hexo! This is your very first post. Check documentation to learn how to use.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-number">2.</span> <span class="toc-text"> Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-new-post"><span class="toc-number">2.1.</span> <span class="toc-text"> Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-server"><span class="toc-number">2.2.</span> <span class="toc-text"> Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate-static-files"><span class="toc-number">2.3.</span> <span class="toc-text"> Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-remote-sites"><span class="toc-number">2.4.</span> <span class="toc-text"> Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95jacobi-%E4%B8%8E-gauss-seidel"><span class="toc-number">1.</span> <span class="toc-text"> 迭代法：Jacobi 与 Gauss-Seidel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 1. 定义与一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text"> 2. 使用的先决条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%94%B6%E6%95%9B%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text"> 3. 收敛条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7%E5%AF%B9%E6%AF%94"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 收敛性对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-number">1.4.</span> <span class="toc-text"> 4. Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#41-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 4.1 定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 4.2 迭代算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43-%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 4.3 一般形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-number">1.5.</span> <span class="toc-text"> 5. Gauss-Seidel 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#51-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 5.1 定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 5.2 迭代算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#53-%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 5.3 一般形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%80%BB%E7%BB%93%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 6. 总结与比较</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -641,13 +771,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Dimanche",
-          title: "Hello World",
-          url: "http://example.com/2025/08/05/hello-world/",
+          title: "数值分析-2",
+          url: "http://example.com/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%EF%BC%882%EF%BC%89/",
           excerpt: "",
           description: "",
-          stripContent: " Welcome to Hexo! This is your very first post. Check documentation to learn how to use. Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshoo",
-          date: "Tue Aug 05 2025 00:00:00 GMT+0800",
-          updated: "Tue Aug 05 2025 10:38:18 GMT+0800",
+          stripContent: " 迭代法：Jacobi 与 Gauss-Seidel  1. 定义与一般形式 Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&amp;#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &amp;#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。 由此，方程 $Ax&amp;#x3D;b$ 可以转化为 $(M-N)x&amp;#x3D;b$，进而得到迭代的一般形式： $$Mx^{(k+1)} &amp;#x3D; Nx^{(k)} + b $$$$x^{(k+1)} &amp;#x3D; ",
+          date: "Tue Aug 05 2025 23:50:20 GMT+0800",
+          updated: "Wed Aug 06 2025 00:30:05 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
