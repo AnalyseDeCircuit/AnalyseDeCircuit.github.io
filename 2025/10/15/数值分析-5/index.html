@@ -35,15 +35,15 @@
 
   
   
-    <meta name="description" content="数值积分：从理论到实践 在微积分中，计算定积分 $I(f) &#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。  理论基石 在探讨数值方法之前，我们先回顾几个关键的微积分定理。  积分中值定理   第一积分中值定理：如果 $f(x)$ 在 $[a">
+    <meta name="description" content="数值积分 在微积分中，计算定积分 $I(f) &#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。  理论基石 在探讨数值方法之前，我们先回顾几个关键的微积分定理。  积分中值定理   第一积分中值定理：如果 $f(x)$ 在 $[a, b]$ 上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数值分析-5">
 <meta property="og:url" content="https://analysedecircuit.github.io/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-5/index.html">
 <meta property="og:site_name" content="Dimanche&#39;s Blog">
-<meta property="og:description" content="数值积分：从理论到实践 在微积分中，计算定积分 $I(f) &#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。  理论基石 在探讨数值方法之前，我们先回顾几个关键的微积分定理。  积分中值定理   第一积分中值定理：如果 $f(x)$ 在 $[a">
+<meta property="og:description" content="数值积分 在微积分中，计算定积分 $I(f) &#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。  理论基石 在探讨数值方法之前，我们先回顾几个关键的微积分定理。  积分中值定理   第一积分中值定理：如果 $f(x)$ 在 $[a, b]$ 上">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-15T09:41:53.000Z">
-<meta property="article:modified_time" content="2025-10-15T10:01:43.342Z">
+<meta property="article:modified_time" content="2025-10-15T10:51:04.202Z">
 <meta property="article:author" content="Dimanche">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -240,7 +240,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E4%BB%8E%E7%90%86%E8%AE%BA%E5%88%B0%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text"> 数值积分：从理论到实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3"><span class="toc-number">1.1.</span> <span class="toc-text"> 理论基石</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 积分中值定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#newton-leibniz-%E5%AE%9A%E7%90%86%E4%B8%8E%E5%87%BD%E6%95%B0%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Newton-Leibniz 定理与函数连续性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 数值积分的目标与形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%89%9B%E9%A1%BF-%E6%9F%AF%E7%89%B9%E6%96%AFnewton-cotes%E5%85%AC%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本的牛顿-柯特斯(Newton-Cotes)公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A6%E5%8F%B3%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 左&#x2F;右矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%AD%E7%82%B9%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 中点矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A2%AF%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. 梯形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%9B%E6%99%AE%E6%A3%AEsimpson%E6%B3%95%E5%88%99"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 辛普森(Simpson)法则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90%E4%B8%8E%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">1.4.</span> <span class="toc-text"> 误差分析与代数精度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差定义与来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%B8%8A%E7%95%8C"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 误差上界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6-order-of-precision"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 代数精度 (Order of Precision)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE%E4%B8%8E%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.5.</span> <span class="toc-text"> 常用公式的误差与精度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E5%8C%BA%E9%97%B4%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E6%8D%A2"><span class="toc-number">1.6.</span> <span class="toc-text"> 积分区间的变量变换</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text"> 数值积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3"><span class="toc-number">1.1.</span> <span class="toc-text"> 理论基石</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 积分中值定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#newton-leibniz-%E5%AE%9A%E7%90%86%E4%B8%8E%E5%87%BD%E6%95%B0%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Newton-Leibniz 定理与函数连续性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 数值积分的目标与形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%89%9B%E9%A1%BF-%E6%9F%AF%E7%89%B9%E6%96%AFnewton-cotes%E5%85%AC%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本的牛顿-柯特斯(Newton-Cotes)公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A6%E5%8F%B3%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 左&#x2F;右矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%AD%E7%82%B9%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 中点矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A2%AF%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. 梯形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%9B%E6%99%AE%E6%A3%AEsimpson%E6%B3%95%E5%88%99"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 辛普森(Simpson)法则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90%E4%B8%8E%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">1.4.</span> <span class="toc-text"> 误差分析与代数精度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差定义与来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%B8%8A%E7%95%8C"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 误差上界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6-order-of-precision"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 代数精度 (Order of Precision)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE%E4%B8%8E%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.5.</span> <span class="toc-text"> 常用公式的误差与精度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E5%8C%BA%E9%97%B4%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E6%8D%A2"><span class="toc-number">1.6.</span> <span class="toc-text"> 积分区间的变量变换</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -253,7 +253,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -261,7 +261,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -355,7 +355,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="数值积分从理论到实践"><a class="markdownIt-Anchor" href="#数值积分从理论到实践"></a> 数值积分：从理论到实践</h2>
+        <h2 id="数值积分"><a class="markdownIt-Anchor" href="#数值积分"></a> 数值积分</h2>
 <p>在微积分中，计算定积分 $I(f) &#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。</p>
 <h3 id="理论基石"><a class="markdownIt-Anchor" href="#理论基石"></a> 理论基石</h3>
 <p>在探讨数值方法之前，我们先回顾几个关键的微积分定理。</p>
@@ -566,10 +566,10 @@ $$</p><p>将 $g(t)$ 的定义代回，就得到了在 $[a, b]$ 上的辛普森�
     
       <div>
         <span class="icon-brush"></span>
-        12.2k
+        15.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:48
+        01:02
       </div>
     
     
@@ -602,7 +602,7 @@ $$</p><p>将 $g(t)$ 的定义代回，就得到了在 $[a, b]$ 上的辛普森�
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E4%BB%8E%E7%90%86%E8%AE%BA%E5%88%B0%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text"> 数值积分：从理论到实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3"><span class="toc-number">1.1.</span> <span class="toc-text"> 理论基石</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 积分中值定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#newton-leibniz-%E5%AE%9A%E7%90%86%E4%B8%8E%E5%87%BD%E6%95%B0%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Newton-Leibniz 定理与函数连续性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 数值积分的目标与形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%89%9B%E9%A1%BF-%E6%9F%AF%E7%89%B9%E6%96%AFnewton-cotes%E5%85%AC%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本的牛顿-柯特斯(Newton-Cotes)公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A6%E5%8F%B3%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 左&#x2F;右矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%AD%E7%82%B9%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 中点矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A2%AF%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. 梯形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%9B%E6%99%AE%E6%A3%AEsimpson%E6%B3%95%E5%88%99"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 辛普森(Simpson)法则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90%E4%B8%8E%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">1.4.</span> <span class="toc-text"> 误差分析与代数精度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差定义与来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%B8%8A%E7%95%8C"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 误差上界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6-order-of-precision"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 代数精度 (Order of Precision)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE%E4%B8%8E%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.5.</span> <span class="toc-text"> 常用公式的误差与精度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E5%8C%BA%E9%97%B4%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E6%8D%A2"><span class="toc-number">1.6.</span> <span class="toc-text"> 积分区间的变量变换</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text"> 数值积分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3"><span class="toc-number">1.1.</span> <span class="toc-text"> 理论基石</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 积分中值定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#newton-leibniz-%E5%AE%9A%E7%90%86%E4%B8%8E%E5%87%BD%E6%95%B0%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Newton-Leibniz 定理与函数连续性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 数值积分的目标与形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%89%9B%E9%A1%BF-%E6%9F%AF%E7%89%B9%E6%96%AFnewton-cotes%E5%85%AC%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本的牛顿-柯特斯(Newton-Cotes)公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A6%E5%8F%B3%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 左&#x2F;右矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%AD%E7%82%B9%E7%9F%A9%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 中点矩形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A2%AF%E5%BD%A2%E6%B3%95%E5%88%99"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. 梯形法则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%9B%E6%99%AE%E6%A3%AEsimpson%E6%B3%95%E5%88%99"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 辛普森(Simpson)法则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90%E4%B8%8E%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">1.4.</span> <span class="toc-text"> 误差分析与代数精度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差定义与来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E4%B8%8A%E7%95%8C"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 误差上界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6-order-of-precision"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 代数精度 (Order of Precision)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE%E4%B8%8E%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.5.</span> <span class="toc-text"> 常用公式的误差与精度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E5%8C%BA%E9%97%B4%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E6%8D%A2"><span class="toc-number">1.6.</span> <span class="toc-text"> 积分区间的变量变换</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -615,7 +615,7 @@ $$</p><p>将 $g(t)$ 的定义代回，就得到了在 $[a, b]$ 上的辛普森�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -623,7 +623,7 @@ $$</p><p>将 $g(t)$ 的定义代回，就得到了在 $[a, b]$ 上的辛普森�
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -767,9 +767,9 @@ $$</p><p>将 $g(t)$ 的定义代回，就得到了在 $[a, b]$ 上的辛普森�
           url: "https://analysedecircuit.github.io/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-5/",
           excerpt: "",
           description: "",
-          stripContent: " 数值积分：从理论到实践 在微积分中，计算定积分 $I(f) &amp;#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。  理论基石 在探讨数值方法之前，我们先回顾几个关键的微积分定理。  积分中值定理   第一积分中值定理：如果 $f(x)$ 在 $[a, b]$ 上连续，那么至少存在一点 $\xi \in [a, b]$，使得： $$\int_a^b",
+          stripContent: " 数值积分 在微积分中，计算定积分 $I(f) &amp;#x3D; \int_a^b f(x) dx$ 是一个核心问题。然而，许多函数的原函数无法用初等函数表示，或者函数本身只以离散数据点的形式给出。在这些情况下，我们必须依赖数值方法来近似计算定积分的值。  理论基石 在探讨数值方法之前，我们先回顾几个关键的微积分定理。  积分中值定理   第一积分中值定理：如果 $f(x)$ 在 $[a, b]$ 上连续，那么至少存在一点 $\xi \in [a, b]$，使得： $$\int_a^b f(x) d",
           date: "Wed Oct 15 2025 17:41:53 GMT+0800",
-          updated: "Wed Oct 15 2025 18:01:43 GMT+0800",
+          updated: "Wed Oct 15 2025 18:51:04 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

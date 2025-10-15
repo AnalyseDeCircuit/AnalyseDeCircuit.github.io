@@ -35,15 +35,15 @@
 
   
   
-    <meta name="description" content="引言：常微分方程初值问题 (Initial Value Problem) 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&#39;(t) &#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以">
+    <meta name="description" content="常微分方程初值问题 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&#39;(t) &#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以确定系统的具体行为，因为它有无穷多个可能的解。为了得到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数值分析-6">
 <meta property="og:url" content="https://analysedecircuit.github.io/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-6/index.html">
 <meta property="og:site_name" content="Dimanche&#39;s Blog">
-<meta property="og:description" content="引言：常微分方程初值问题 (Initial Value Problem) 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&#39;(t) &#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以">
+<meta property="og:description" content="常微分方程初值问题 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&#39;(t) &#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以确定系统的具体行为，因为它有无穷多个可能的解。为了得到">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-15T10:14:00.000Z">
-<meta property="article:modified_time" content="2025-10-15T10:16:52.651Z">
+<meta property="article:modified_time" content="2025-10-15T11:04:21.823Z">
 <meta property="article:author" content="Dimanche">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -240,7 +240,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98-initial-value-problem"><span class="toc-number">1.</span> <span class="toc-text"> 引言：常微分方程初值问题 (Initial Value Problem)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 常微分方程初值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -253,7 +253,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -261,7 +261,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -355,7 +355,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="引言常微分方程初值问题-initial-value-problem"><a class="markdownIt-Anchor" href="#引言常微分方程初值问题-initial-value-problem"></a> 引言：常微分方程初值问题 (Initial Value Problem)</h2>
+        <h2 id="常微分方程初值问题"><a class="markdownIt-Anchor" href="#常微分方程初值问题"></a> 常微分方程初值问题</h2>
 <p>许多物理、工程和经济学中的动态系统都可以用<strong>常微分方程 (Ordinary Differential Equations, ODEs)</strong> 来描述。一个典型的一阶ODE具有以下形式：</p>
 <p>$$y&#39;(t) &#x3D; f(t, y(t))
 $$</p><p>这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。</p>
@@ -448,6 +448,23 @@ $$</p></li>
   
   <nav id="article-nav" data-aos="fade-up">
     
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Fourier/Laplace/Z变换" class="lazyload">
+          
+        
+        <a href="/2025/10/15/Fourier-Laplace-Z%E5%8F%98%E6%8D%A2/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            Fourier/Laplace/Z变换
+          
+        </h3>
+      </div>
+    
     
     
     <div class="article-nav-link-wrap article-nav-link-right">
@@ -507,10 +524,10 @@ $$</p></li>
     
       <div>
         <span class="icon-brush"></span>
-        12.2k
+        15.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:48
+        01:02
       </div>
     
     
@@ -543,7 +560,7 @@ $$</p></li>
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98-initial-value-problem"><span class="toc-number">1.</span> <span class="toc-text"> 引言：常微分方程初值问题 (Initial Value Problem)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 常微分方程初值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -556,7 +573,7 @@ $$</p></li>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -564,7 +581,7 @@ $$</p></li>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -708,9 +725,9 @@ $$</p></li>
           url: "https://analysedecircuit.github.io/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-6/",
           excerpt: "",
           description: "",
-          stripContent: " 引言：常微分方程初值问题 (Initial Value Problem) 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&amp;#39;(t) &amp;#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以确定系统的具体行为，因为它有无穷多个可能的解。为了得到一个唯一的解，我们还需要一个初始状态，即初值条",
+          stripContent: " 常微分方程初值问题 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&amp;#39;(t) &amp;#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以确定系统的具体行为，因为它有无穷多个可能的解。为了得到一个唯一的解，我们还需要一个初始状态，即初值条件 (Initial Condition)： $$y(",
           date: "Wed Oct 15 2025 18:14:00 GMT+0800",
-          updated: "Wed Oct 15 2025 18:16:52 GMT+0800",
+          updated: "Wed Oct 15 2025 19:04:21 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
