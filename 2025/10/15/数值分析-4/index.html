@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://analysedecircuit.github.io';</script>
   
   <title>
-    Hello World |
+    数值分析-4 |
     
     Dimanche&#39;s Blog
   </title>
@@ -35,16 +35,17 @@
 
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use. Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when">
+    <meta name="description" content="函数插值与多项式逼近 在科学计算和工程应用中，我们经常遇到一个问题：一个函数 $f(x)$ 可能形式复杂、计算成本高，或者我们只知道它在一系列离散点上的函数值。为了方便地分析和计算，我们希望找到一个更简单的函数 $P(x)$ 来近似替代 $f(x)$。  什么是好的逼近？ 一个好的逼近函数 $P(x)$ 通常应满足以下条件：  易于计算：$P(x)$ 的形式应足够简单，例如多项式或分段多项式，使">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://analysedecircuit.github.io/2025/08/05/hello-world/index.html">
+<meta property="og:title" content="数值分析-4">
+<meta property="og:url" content="https://analysedecircuit.github.io/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-4/index.html">
 <meta property="og:site_name" content="Dimanche&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation to learn how to use. Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when">
+<meta property="og:description" content="函数插值与多项式逼近 在科学计算和工程应用中，我们经常遇到一个问题：一个函数 $f(x)$ 可能形式复杂、计算成本高，或者我们只知道它在一系列离散点上的函数值。为了方便地分析和计算，我们希望找到一个更简单的函数 $P(x)$ 来近似替代 $f(x)$。  什么是好的逼近？ 一个好的逼近函数 $P(x)$ 通常应满足以下条件：  易于计算：$P(x)$ 的形式应足够简单，例如多项式或分段多项式，使">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-08-05T02:38:18.265Z">
+<meta property="article:published_time" content="2025-10-15T09:34:02.000Z">
+<meta property="article:modified_time" content="2025-10-15T09:41:38.553Z">
 <meta property="article:author" content="Dimanche">
+<meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
   
   
@@ -201,7 +202,7 @@
           
         </picture>
         
-          <img  fetchpriority="high" src="/images/banner.webp" alt="Hello World">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="数值分析-4">
         
       
     
@@ -212,7 +213,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">Hello World</h1>
+            <h1 data-aos="slide-up">数值分析-4</h1>
           </a>
         
       
@@ -239,7 +240,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><span class="toc-number">1.</span> <span class="toc-text"> Welcome to Hexo! This is your very first post. Check documentation to learn how to use.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-number">2.</span> <span class="toc-text"> Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-new-post"><span class="toc-number">2.1.</span> <span class="toc-text"> Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-server"><span class="toc-number">2.2.</span> <span class="toc-text"> Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate-static-files"><span class="toc-number">2.3.</span> <span class="toc-text"> Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-remote-sites"><span class="toc-number">2.4.</span> <span class="toc-text"> Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%8F%92%E5%80%BC%E4%B8%8E%E5%A4%9A%E9%A1%B9%E5%BC%8F%E9%80%BC%E8%BF%91"><span class="toc-number">1.</span> <span class="toc-text"> 函数插值与多项式逼近</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A5%BD%E7%9A%84%E9%80%BC%E8%BF%91"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是好的逼近？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 插值多项式的存在性与唯一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 基函数与插值方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E8%8C%83%E5%BE%B7%E8%92%99%E6%8F%92%E5%80%BC-vandermonde-interpolation"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 方法一：范德蒙插值 (Vandermonde Interpolation)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC-lagrange-interpolation"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 方法二：拉格朗日插值 (Lagrange Interpolation)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E7%89%9B%E9%A1%BF%E6%8F%92%E5%80%BC-newton-interpolation"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 方法三：牛顿插值 (Newton Interpolation)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E8%AF%AF%E5%B7%AE%E4%B8%8E%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-number">1.4.</span> <span class="toc-text"> 插值误差与收敛性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 插值误差估计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%94%B6%E6%95%9B%E6%80%A7%E4%B8%8E%E9%BE%99%E6%A0%BC%E7%8E%B0%E8%B1%A1-runges-phenomenon"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 插值收敛性与龙格现象 (Runge’s Phenomenon)</span></a></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -335,13 +336,13 @@
   
 </aside>
 
-          <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-数值分析-4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
-    <time datetime="2025-08-04T16:00:00.000Z" itemprop="datePublished">2025-08-05</time>
-    <time style="display: none;" id="post-update-time">2025-08-05</time>
+    <time datetime="2025-10-15T09:34:02.000Z" itemprop="datePublished">2025-10-15</time>
+    <time style="display: none;" id="post-update-time">2025-10-15</time>
   </span>
 </div>
 
@@ -354,21 +355,131 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><a class="markdownIt-Anchor" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"></a> Welcome to <a target="_blank" rel="noopener" href="http://zespia.tw/hexo">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="http://zespia.tw/hexo/docs">documentation</a> to learn how to use.</h2>
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="函数插值与多项式逼近"><a class="markdownIt-Anchor" href="#函数插值与多项式逼近"></a> 函数插值与多项式逼近</h2>
+<p>在科学计算和工程应用中，我们经常遇到一个问题：一个函数 $f(x)$ 可能形式复杂、计算成本高，或者我们只知道它在一系列离散点上的函数值。为了方便地分析和计算，我们希望找到一个更简单的函数 $P(x)$ 来近似替代 $f(x)$。</p>
+<h3 id="什么是好的逼近"><a class="markdownIt-Anchor" href="#什么是好的逼近"></a> 什么是好的逼近？</h3>
+<p>一个好的逼近函数 $P(x)$ 通常应满足以下条件：</p>
+<ol>
+<li><strong>易于计算</strong>：$P(x)$ 的形式应足够简单，例如多项式或分段多项式，使其值的计算、微分和积分都易于实现。</li>
+<li><strong>精确度高</strong>：在关心的区间内，$P(x)$ 与 $f(x)$ 的误差要尽可能小。</li>
+<li><strong>插值性</strong>：在给定的数据点 $(x_i, y_i)$ 上，我们通常要求 $P(x_i) &#x3D; y_i$。这就是“插值”的核心要求。</li>
+</ol>
+<p>在众多逼近函数中，<strong>多项式</strong>由于其良好的性质（易于计算、微分和积分，且根据魏尔斯特拉斯逼近定理，任何连续函数都可以用多项式一致逼近），成为最常用的插值函数。</p>
+<h3 id="插值多项式的存在性与唯一性"><a class="markdownIt-Anchor" href="#插值多项式的存在性与唯一性"></a> 插值多项式的存在性与唯一性</h3>
+<p><strong>定理</strong>：给定 $n+1$ 个互不相同的节点 $(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)$，其中 $y_i &#x3D; f(x_i)$，存在<strong>唯一</strong>一个次数不超过 $n$ 的多项式 $P_n(x)$，满足插值条件：</p>
+<p>$$P_n(x_i) &#x3D; y_i, \quad \text{for } i &#x3D; 0, 1, \ldots, n
+$$</p><p><strong>证明思路</strong>：</p>
+<ul>
+<li><strong>存在性</strong>：我们可以通过构造性的方法（例如后面的拉格朗日插值法）直接给出一个满足条件的多项式，从而证明其存在。</li>
+<li><strong>唯一性 (反证法)</strong>：
+<ul>
+<li>假设存在两个不同的、次数不超过 $n$ 的多项式 $P_n(x)$ 和 $Q_n(x)$ 都满足插值条件。</li>
+<li>构造一个新的多项式 $D(x) &#x3D; P_n(x) - Q_n(x)$。</li>
+<li>由于 $P_n(x_i) &#x3D; y_i$ 和 $Q_n(x_i) &#x3D; y_i$，我们有 $D(x_i) &#x3D; y_i - y_i &#x3D; 0$ 对所有 $i&#x3D;0, \ldots, n$ 成立。</li>
+<li>这意味着 $D(x)$ 至少有 $n+1$ 个不同的根 $(x_0, x_1, \ldots, x_n)$。</li>
+<li>根据代数基本定理，一个非零多项式的根的个数不能超过其次数。由于 $P_n(x)$ 和 $Q_n(x)$ 的次数都不超过 $n$，所以 $D(x)$ 的次数也不超过 $n$。</li>
+<li>一个次数不超过 $n$ 的多项式却拥有 $n+1$ 个根，唯一的可能性是这个多项式为零多项式，即 $D(x) \equiv 0$。</li>
+<li>因此，$P_n(x) &#x3D; Q_n(x)$，这与我们最初的假设（两个多项式不同）相矛盾。所以，插值多项式是唯一的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="基函数与插值方法"><a class="markdownIt-Anchor" href="#基函数与插值方法"></a> 基函数与插值方法</h3>
+<p>构造插值多项式的核心思想是选择一组合适的<strong>基函数</strong> (Basis Functions)。对于次数为 $n$ 的多项式空间，我们可以选择不同的基底来表示 $P_n(x)$。</p>
+<h4 id="方法一范德蒙插值-vandermonde-interpolation"><a class="markdownIt-Anchor" href="#方法一范德蒙插值-vandermonde-interpolation"></a> 方法一：范德蒙插值 (Vandermonde Interpolation)</h4>
+<p>这是最直接的思路。我们选择最自然的基底：$\{1, x, x^2, \ldots, x^n\}$。<br />
+设插值多项式为：</p>
+<p>$$P_n(x) &#x3D; a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n
+$$</p><p>将 $n+1$ 个插值条件 $P_n(x_i) &#x3D; y_i$ 代入，得到一个关于系数 $a_j$ 的线性方程组：</p>
+<p>$$\begin{cases}
+a_0 + a_1 x_0 + a_2 x_0^2 + \cdots + a_n x_0^n &#x3D; y_0 \\
+a_0 + a_1 x_1 + a_2 x_1^2 + \cdots + a_n x_1^n &#x3D; y_1 \\
+\vdots \\
+a_0 + a_1 x_n + a_2 x_n^2 + \cdots + a_n x_n^n &#x3D; y_n
+\end{cases}
+$$</p><p>写成矩阵形式为 $V a &#x3D; y$：</p>
+<p>$$\begin{pmatrix}
+1 &amp; x_0 &amp; x_0^2 &amp; \cdots &amp; x_0^n \\
+1 &amp; x_1 &amp; x_1^2 &amp; \cdots &amp; x_1^n \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_n &amp; x_n^2 &amp; \cdots &amp; x_n^n
+\end{pmatrix}
+\begin{pmatrix}
+a_0 \\
+a_1 \\
+\vdots \\
+a_n
+\end{pmatrix}
+&#x3D;
+\begin{pmatrix}
+y_0 \\
+y_1 \\
+\vdots \\
+y_n
+\end{pmatrix}
+$$</p><p>这个系数矩阵被称为<strong>范德蒙矩阵</strong>。由于所有节点 $x_i$ 互不相同，范德蒙矩阵是可逆的，因此系数向量 $a$ 存在且唯一。</p>
+<ul>
+<li><strong>缺点</strong>：当 $n$ 较大时，范德蒙矩阵的条件数会非常大，导致数值求解非常不稳定。因此，这种方法在实际中很少使用。</li>
+</ul>
+<h4 id="方法二拉格朗日插值-lagrange-interpolation"><a class="markdownIt-Anchor" href="#方法二拉格朗日插值-lagrange-interpolation"></a> 方法二：拉格朗日插值 (Lagrange Interpolation)</h4>
+<p>拉格朗日插值的思想是选择一组更巧妙的基函数，使得系数的求解变得异常简单。<br />
+它构造了 $n+1$ 个<strong>拉格朗日基多项式</strong> $l_j(x)$，每个基多项式 $l_j(x)$ 的次数为 $n$，且具有以下优美的性质：</p>
+<p>$$l_j(x_i) &#x3D; \delta_{ij} &#x3D;
+\begin{cases}
+1, &amp; \text{if } i &#x3D; j \\
+0, &amp; \text{if } i \neq j
+\end{cases}
+$$</p><p>为了实现这个性质，$l_j(x)$ 必须在除 $x_j$ 外的所有节点 $x_i$ 处取零，因此它可以写成：</p>
+<p>$$l_j(x) &#x3D; C \cdot (x-x_0)(x-x_1)\cdots(x-x_{j-1})(x-x_{j+1})\cdots(x-x_n)
+$$</p><p>再利用 $l_j(x_j) &#x3D; 1$ 来确定常数 $C$，得到：</p>
+<p>$$l_j(x) &#x3D; \prod_{i&#x3D;0, i \neq j}^{n} \frac{x - x_i}{x_j - x_i}
+$$</p><p>有了这组基函数，插值多项式就可以直接写出：</p>
+<p>$$P_n(x) &#x3D; \sum_{j&#x3D;0}^{n} y_j l_j(x)
+$$</p><p>验证一下，当 $x&#x3D;x_i$ 时，$P_n(x_i) &#x3D; \sum_{j&#x3D;0}^{n} y_j l_j(x_i) &#x3D; y_i l_i(x_i) &#x3D; y_i$，完全满足插值条件。</p>
+<ul>
+<li><strong>优点</strong>：公式结构清晰，理论分析方便。</li>
+<li><strong>缺点</strong>：每当增加或删除一个插值节点时，所有的基函数都需要重新计算，计算量较大。</li>
+</ul>
+<h4 id="方法三牛顿插值-newton-interpolation"><a class="markdownIt-Anchor" href="#方法三牛顿插值-newton-interpolation"></a> 方法三：牛顿插值 (Newton Interpolation)</h4>
+<p>牛顿插值法克服了拉格朗日插值的缺点，使得在增加节点时可以方便地进行递推。<br />
+它使用的基函数是：</p>
+<p>$$\{1, (x-x_0), (x-x_0)(x-x_1), \ldots, \prod_{i&#x3D;0}^{n-1}(x-x_i)\}
+$$</p><p>插值多项式形式为：</p>
+<p>$$P_n(x) &#x3D; c_0 + c_1(x-x_0) + c_2(x-x_0)(x-x_1) + \cdots + c_n \prod_{i&#x3D;0}^{n-1}(x-x_i)
+$$</p><p>系数 $c_k$ 可以通过一种称为<strong>差商 (Divided Differences)</strong> 的递推方法来确定。</p>
+<p><strong>差商的定义</strong>：</p>
+<ul>
+<li><strong>零阶差商</strong>：$f[x_i] &#x3D; f(x_i) &#x3D; y_i$</li>
+<li><strong>一阶差商</strong>：$f[x_i, x_j] &#x3D; \frac{f[x_j] - f[x_i]}{x_j - x_i}$</li>
+<li><strong>k阶差商</strong>：$f[x_i, x_{i+1}, \ldots, x_{i+k}] &#x3D; \frac{f[x_{i+1}, \ldots, x_{i+k}] - f[x_i, \ldots, x_{i+k-1}]}{x_{i+k} - x_i}$</li>
+</ul>
+<p>牛顿插值多项式的系数 $c_k$ 就是差商的对角线元素：</p>
+<p>$$c_k &#x3D; f[x_0, x_1, \ldots, x_k]
+$$</p><p>因此，牛顿插值多项式为：</p>
+<p>$$P_n(x) &#x3D; f[x_0] + f[x_0, x_1](x-x_0) + \cdots + f[x_0, \ldots, x_n]\prod_{i&#x3D;0}^{n-1}(x-x_i)
+$$</p><ul>
+<li><strong>优点</strong>：增加新节点时，只需在原有基础上增加一项，之前的计算结果可以复用，非常适合动态增加数据点的场景。</li>
+</ul>
+<h3 id="插值误差与收敛性"><a class="markdownIt-Anchor" href="#插值误差与收敛性"></a> 插值误差与收敛性</h3>
+<h4 id="插值误差估计"><a class="markdownIt-Anchor" href="#插值误差估计"></a> 插值误差估计</h4>
+<p>设 $P_n(x)$ 是函数 $f(x)$ 在节点 $x_0, \ldots, x_n$ 上的插值多项式。如果 $f(x)$ 在包含这些节点的区间内有 $n+1$ 阶连续导数，那么对于任意 $x$，其插值误差 $R_n(x) &#x3D; f(x) - P_n(x)$ 可以表示为：</p>
+<p>$$R_n(x) &#x3D; \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i&#x3D;0}^{n} (x - x_i)
+$$</p><p>其中 $\xi$ 是一个依赖于 $x$ 且位于插值节点所构成的最小区间内的某个点。</p>
+<p>这个公式告诉我们，误差取决于三个因素：</p>
+<ol>
+<li><strong>函数的高阶导数</strong>：如果函数的高阶导数增长很快，误差可能会很大。</li>
+<li><strong>插值区间的长度</strong>：$(x-x_i)$ 项表明，离插值节点越远，误差可能越大。</li>
+<li><strong>插值多项式的次数 $n$</strong>。</li>
+</ol>
+<h4 id="插值收敛性与龙格现象-runges-phenomenon"><a class="markdownIt-Anchor" href="#插值收敛性与龙格现象-runges-phenomenon"></a> 插值收敛性与龙格现象 (Runge’s Phenomenon)</h4>
+<p>一个自然的问题是：是不是只要不断增加插值节点的数量（即提高多项式次数 $n$），插值多项式就会越来越逼近原函数？</p>
+<p>答案是：<strong>不一定</strong>。</p>
+<p>对于某些函数，即使它们是无限光滑的，当在等距节点上使用高次多项式插值时，在区间的边缘部分可能会出现剧烈的振荡，导致误差不仅不减小，反而急剧增大。这种现象被称为<strong>龙格现象</strong>。</p>
+<p>一个经典的例子是在区间 $[-1, 1]$ 上对函数 $f(x) &#x3D; \frac{1}{1+25x^2}$ 进行等距节点插值。</p>
+<p><strong>结论</strong>：高次多项式插值（特别是使用等距节点时）是数值不稳定的。在实际应用中，为了避免龙格现象，通常采用以下策略：</p>
+<ul>
+<li><strong>分段低次插值</strong>：将整个区间分成若干小段，在每个小段上使用低次多项式（如线性或三次样条插值）。这是最常用和最稳健的方法。</li>
+<li><strong>非均匀节点</strong>：使用特殊的节点分布，如<strong>切比雪夫节点</strong>，可以有效地减小和避免龙格现象。</li>
+</ul>
 
       
     </div>
@@ -382,6 +493,8 @@
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
 
     </footer>
   </div>
@@ -393,18 +506,35 @@
         
           
           
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="数值分析(1)" class="lazyload">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="数值分析-5" class="lazyload">
           
         
-        <a href="/2025/08/05/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-1/"></a>
+        <a href="/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-5/"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
           
-            数值分析(1)
+            数值分析-5
           
         </h3>
       </div>
     
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="数值分析-3" class="lazyload">
+        
+      
+      <a href="/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-3/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          数值分析-3
+        
+      </h3>
+    </div>
     
   </nav>
 
@@ -483,7 +613,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome-to-hexo-this-is-your-very-first-post-check-documentation-to-learn-how-to-use"><span class="toc-number">1.</span> <span class="toc-text"> Welcome to Hexo! This is your very first post. Check documentation to learn how to use.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-number">2.</span> <span class="toc-text"> Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-new-post"><span class="toc-number">2.1.</span> <span class="toc-text"> Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-server"><span class="toc-number">2.2.</span> <span class="toc-text"> Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate-static-files"><span class="toc-number">2.3.</span> <span class="toc-text"> Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-remote-sites"><span class="toc-number">2.4.</span> <span class="toc-text"> Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%8F%92%E5%80%BC%E4%B8%8E%E5%A4%9A%E9%A1%B9%E5%BC%8F%E9%80%BC%E8%BF%91"><span class="toc-number">1.</span> <span class="toc-text"> 函数插值与多项式逼近</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A5%BD%E7%9A%84%E9%80%BC%E8%BF%91"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是好的逼近？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 插值多项式的存在性与唯一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 基函数与插值方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E8%8C%83%E5%BE%B7%E8%92%99%E6%8F%92%E5%80%BC-vandermonde-interpolation"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 方法一：范德蒙插值 (Vandermonde Interpolation)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC-lagrange-interpolation"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 方法二：拉格朗日插值 (Lagrange Interpolation)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%E7%89%9B%E9%A1%BF%E6%8F%92%E5%80%BC-newton-interpolation"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 方法三：牛顿插值 (Newton Interpolation)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E8%AF%AF%E5%B7%AE%E4%B8%8E%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-number">1.4.</span> <span class="toc-text"> 插值误差与收敛性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 插值误差估计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E6%94%B6%E6%95%9B%E6%80%A7%E4%B8%8E%E9%BE%99%E6%A0%BC%E7%8E%B0%E8%B1%A1-runges-phenomenon"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 插值收敛性与龙格现象 (Runge’s Phenomenon)</span></a></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -644,13 +774,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Dimanche",
-          title: "Hello World",
-          url: "https://analysedecircuit.github.io/2025/08/05/hello-world/",
+          title: "数值分析-4",
+          url: "https://analysedecircuit.github.io/2025/10/15/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90-4/",
           excerpt: "",
           description: "",
-          stripContent: " Welcome to Hexo! This is your very first post. Check documentation to learn how to use. Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshoo",
-          date: "Tue Aug 05 2025 00:00:00 GMT+0800",
-          updated: "Tue Aug 05 2025 10:38:18 GMT+0800",
+          stripContent: " 函数插值与多项式逼近 在科学计算和工程应用中，我们经常遇到一个问题：一个函数 $f(x)$ 可能形式复杂、计算成本高，或者我们只知道它在一系列离散点上的函数值。为了方便地分析和计算，我们希望找到一个更简单的函数 $P(x)$ 来近似替代 $f(x)$。  什么是好的逼近？ 一个好的逼近函数 $P(x)$ 通常应满足以下条件：  易于计算：$P(x)$ 的形式应足够简单，例如多项式或分段多项式，使其值的计算、微分和积分都易于实现。 精确度高：在关心的区间内，$P(x)$ 与 $f(x)$ 的误差",
+          date: "Wed Oct 15 2025 17:34:02 GMT+0800",
+          updated: "Wed Oct 15 2025 17:41:38 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
