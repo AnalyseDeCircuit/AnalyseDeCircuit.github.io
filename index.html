@@ -333,23 +333,23 @@
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-08-05</span>
         <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
       </div>
       <h2 class="post-title">数值分析-2</h2>
       <article class="post-article">
         
           <h2 id="迭代法jacobi-与-gauss-seidel"><a class="markdownIt-Anchor" href="#迭代法jacobi-与-gauss-seidel"></a> 迭代法：Jacobi 与 Gauss-Seidel</h2>
-<h3 id="1-定义与一般形式"><a class="markdownIt-Anchor" href="#1-定义与一般形式"></a> 1. 定义与一般形式</h3>
+<h3 id="定义与一般形式"><a class="markdownIt-Anchor" href="#定义与一般形式"></a> 定义与一般形式</h3>
 <p>Jacobi和Gauss-Seidel方法是求解线性方程组 $Ax&#x3D;b$ 的经典迭代技术。其核心思想是将矩阵 $A$ 分解为 $A &#x3D; M - N$，其中 $M$ 是一个容易求逆的矩阵。</p>
 <p>由此，方程 $Ax&#x3D;b$ 可以转化为 $(M-N)x&#x3D;b$，进而得到迭代的一般形式：</p>
 <p>$$Mx^{(k+1)} &#x3D; Nx^{(k)} + b
 $$</p><p>$$x^{(k+1)} &#x3D; M^{-1}Nx^{(k)} + M^{-1}b
 $$</p><p>记迭代矩阵 $B &#x3D; M^{-1}N$，常数向量 $f &#x3D; M^{-1}b$，则一般形式为：</p>
 <p>$$x^{(k+1)} &#x3D; Bx^{(k)} + f
-$$</p><h3 id="2-使用的先决条件"><a class="markdownIt-Anchor" href="#2-使用的先决条件"></a> 2. 使用的先决条件</h3>
+$$</p><h3 id="使用的先决条件"><a class="markdownIt-Anchor" href="#使用的先决条件"></a> 使用的先决条件</h3>
 <p>为了保证迭代过程能够顺利进行，必须满足以下基本条件：</p>
 <ul>
-<li><strong>对角元素非零</strong>：对于矩阵 $A$ 的所有对角元素 $a_{ii}$，必须有 $a_{ii} \neq 0$。这是因为两种方法都需
+<li><strong>对角元素非零</strong>：对于矩阵 $A$ 的所有对角元素 $a_{ii}$，必须有 $a_{ii} \neq 0$。这是因为两种方法都需要用对角元素作为分母。</l
         
       </article>
     </div>
@@ -374,8 +374,8 @@ $$</p><h3 id="2-使用的先决条件"><a class="markdownIt-Anchor" href="#2-使
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-08-05</span>
-        <span><span class="icon-pencil"></span>3k 字</span>
-        <span><span class="icon-clock"></span>14 分钟</span>
+        <span><span class="icon-pencil"></span>2.9k 字</span>
+        <span><span class="icon-clock"></span>13 分钟</span>
       </div>
       <h2 class="post-title">数值分析(1)</h2>
       <article class="post-article">
@@ -383,15 +383,15 @@ $$</p><h3 id="2-使用的先决条件"><a class="markdownIt-Anchor" href="#2-使
           <h2 id="矩阵分解lu分解与cholesky分解"><a class="markdownIt-Anchor" href="#矩阵分解lu分解与cholesky分解"></a> 矩阵分解：LU分解与Cholesky分解</h2>
 <h3 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h3>
 <p>在数值分析中，矩阵分解是解决线性方程组的重要方法。通过将复杂的矩阵分解为结构简单的矩阵乘积，我们可以更高效地求解线性方程组、计算矩阵的逆以及求解特征值问题。本文将详细介绍两种重要的矩阵分解方法：LU分解和Cholesky分解。</p>
-<h2 id="1-lu分解"><a class="markdownIt-Anchor" href="#1-lu分解"></a> 1. LU分解</h2>
-<h3 id="11-定义"><a class="markdownIt-Anchor" href="#11-定义"></a> 1.1 定义</h3>
+<h2 id="lu分解"><a class="markdownIt-Anchor" href="#lu分解"></a> LU分解</h2>
+<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
 <p>LU分解（LU Decomposition）是将一个矩阵分解为一个下三角矩阵L（Lower triangular matrix）和一个上三角矩阵U（Upper triangular matrix）的乘积。</p>
 <p>对于 $n \times n$ 矩阵 $A$，如果存在下三角矩阵 $L$ 和上三角矩阵 $U$，使得：</p>
 <p>$$A &#x3D; LU
 $$</p><p>其中：</p>
 <ul>
 <li>
-<p>$L$ 是下三角矩阵：$L &#x3D; \begin{pmatrix} l_{11} &amp; 0 &amp; \cdots &amp; 0 \\ l_{21} &amp; l_{22} &amp; \cdots &amp; 0 \\ \vdots &
+<p>$L$ 是下三角矩阵：$L &#x3D; \begin{pmatrix} l_{11} &amp; 0 &amp; \cdots &amp; 0 \\ l_{21} &amp; l_{22} &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp;
         
       </article>
     </div>
@@ -466,7 +466,7 @@ $$</p><p>其中：</p>
         4.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:20
+        00:18
       </div>
     
     
