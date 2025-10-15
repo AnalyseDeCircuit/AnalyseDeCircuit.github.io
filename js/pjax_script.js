@@ -258,7 +258,7 @@ function tocInit() {
 
     let parent = target.parentNode;
 
-    while (!parent.matches(".sidebar-toc")) {
+    while (!parent.matches(".sidebar-toc-sidebar")) {
       if (parent.matches("li")) {
         parent.classList.add("active");
         const t = document.getElementById(
@@ -331,10 +331,10 @@ window
   });
 tocInit();
 
-_$(".sponsor-button-wrapper")
+_$(".sponsor-button")
   ?.off("click")
   .on("click", () => {
-    _$(".sponsor-button-wrapper")?.classList.toggle("active");
+    _$(".sponsor-button")?.classList.toggle("active");
     _$(".sponsor-tip")?.classList.toggle("active");
     _$(".sponsor-qr")?.classList.toggle("active");
   });
