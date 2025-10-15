@@ -43,7 +43,7 @@
 <meta property="og:description" content="常微分方程初值问题 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&#39;(t) &#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以确定系统的具体行为，因为它有无穷多个可能的解。为了得到">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-15T10:14:00.000Z">
-<meta property="article:modified_time" content="2025-10-15T11:04:21.823Z">
+<meta property="article:modified_time" content="2025-10-15T16:24:29.593Z">
 <meta property="article:author" content="LaTerrasse">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -240,7 +240,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 常微分方程初值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 常微分方程初值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%AD%A5%E5%A4%9A%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95rungekuttark"><span class="toc-number">1.4.</span> <span class="toc-text"> 单步多阶段方法：Runge–Kutta（RK）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E4%BA%8C%E9%98%B6rk%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 经典二阶RK（举例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9B%9B%E9%98%B6rkrk4"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 经典四阶RK（RK4）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#butcher-%E8%A1%A8%E4%B8%8E%E9%98%B6%E6%9D%A1%E4%BB%B6%E7%AE%80%E8%BF%B0"><span class="toc-number">1.4.3.</span> <span class="toc-text"> Butcher 表与阶条件（简述）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E6%AD%A5%E9%95%BF%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AF%B9"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 自适应步长（嵌入式对）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%B5%8B%E8%AF%95%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 线性测试方程与稳定性区域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%A4%9A%E6%AD%A5%E6%96%B9%E6%B3%95lmm"><span class="toc-number">1.5.</span> <span class="toc-text"> 线性多步方法（LMM）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E4%B8%8E%E9%9B%B6%E7%A8%B3%E5%AE%9A%E6%80%A7%E6%A0%B9%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 一致性与零稳定性（根条件）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#adams-%E5%AE%B6%E6%97%8F%E7%A7%AF%E5%88%86%E5%9E%8B"><span class="toc-number">1.5.2.</span> <span class="toc-text"> Adams 家族（积分型）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%90%91%E5%B7%AE%E5%88%86%E5%85%AC%E5%BC%8Fbdf%E5%BE%AE%E5%88%86%E5%9E%8B"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 后向差分公式（BDF，微分型）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%AD%96%E7%95%A5%E4%B8%8E%E5%AE%9E%E7%8E%B0%E8%A6%81%E7%82%B9"><span class="toc-number">1.5.4.</span> <span class="toc-text"> 启动策略与实现要点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE%E9%9D%9E%E5%88%9A%E6%80%A7-vs-%E5%88%9A%E6%80%A7"><span class="toc-number">1.5.5.</span> <span class="toc-text"> 选择建议（非刚性 vs 刚性）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.6.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -342,7 +342,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-10-15T10:14:00.000Z" itemprop="datePublished">2025-10-15</time>
-    <time style="display: none;" id="post-update-time">2025-10-15</time>
+    <time style="display: none;" id="post-update-time">2025-10-16</time>
   </span>
 </div>
 
@@ -381,21 +381,21 @@ $$</p><p>因此，真实解满足：</p>
 <p>$$y(t_{n+1}) &#x3D; y(t_n) + \int_{t_n}^{t_{n+1}} f(t, y(t)) dt 
 $$</p><p>这个公式是精确的。数值方法的本质区别，就在于如何近似右侧的积分项 $\int_{t_n}^{t_{n+1}} f(t, y(t)) dt$。</p>
 <h3 id="经典的数值求解方法"><a class="markdownIt-Anchor" href="#经典的数值求解方法"></a> 经典的数值求解方法</h3>
-<h4 id="1-前向欧拉法-forward-euler"><a class="markdownIt-Anchor" href="#1-前向欧拉法-forward-euler"></a> 1. 前向欧拉法 (Forward Euler)</h4>
+<h4 id="前向欧拉法-forward-euler"><a class="markdownIt-Anchor" href="#前向欧拉法-forward-euler"></a> 前向欧拉法 (Forward Euler)</h4>
 <p>最简单的近似方法是用积分区间左端点的值来近似整个积分，即 $\int_{t_n}^{t_{n+1}} f(t, y(t)) dt \approx h \cdot f(t_n, y(t_n))$。<br />
 由此得到<strong>前向欧拉法</strong>的迭代公式：</p>
 <p>$$y_{n+1} &#x3D; y_n + h f(t_n, y_n) 
 $$</p><p>这是一个<strong>显式</strong>方法，因为 $y_{n+1}$ 的计算直接由已知的 $y_n$ 给出。</p>
-<h4 id="2-后向欧拉法-backward-euler"><a class="markdownIt-Anchor" href="#2-后向欧拉法-backward-euler"></a> 2. 后向欧拉法 (Backward Euler)</h4>
+<h4 id="后向欧拉法-backward-euler"><a class="markdownIt-Anchor" href="#后向欧拉法-backward-euler"></a> 后向欧拉法 (Backward Euler)</h4>
 <p>如果我们用积分区间右端点的值来近似积分，即 $\int_{t_n}^{t_{n+1}} f(t, y(t)) dt \approx h \cdot f(t_{n+1}, y(t_{n+1}))$。<br />
 迭代公式变为：</p>
 <p>$$y_{n+1} &#x3D; y_n + h f(t_{n+1}, y_{n+1}) 
 $$</p><p>这是一个<strong>隐式</strong>方法，因为待求的 $y_{n+1}$ 同时出现在方程的两边。求解它通常需要使用牛顿法等非线性方程求解器。</p>
-<h4 id="3-crank-nicolson-方法-梯形法"><a class="markdownIt-Anchor" href="#3-crank-nicolson-方法-梯形法"></a> 3. Crank-Nicolson 方法 (梯形法)</h4>
+<h4 id="crank-nicolson-方法-梯形法"><a class="markdownIt-Anchor" href="#crank-nicolson-方法-梯形法"></a> Crank-Nicolson 方法 (梯形法)</h4>
 <p>为了获得更高的精度，我们可以使用梯形法则来近似积分，即取左右端点的平均值：</p>
 <p>$$y_{n+1} &#x3D; y_n + \frac{h}{2} [f(t_n, y_n) + f(t_{n+1}, y_{n+1})] 
 $$</p><p>Crank-Nicolson方法同样是<strong>隐式</strong>的，但其精度通常高于前向和后向欧拉法。</p>
-<h4 id="4-欧拉-柯西-预估-校正法-predictor-corrector"><a class="markdownIt-Anchor" href="#4-欧拉-柯西-预估-校正法-predictor-corrector"></a> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</h4>
+<h4 id="欧拉-柯西-预估-校正法-predictor-corrector"><a class="markdownIt-Anchor" href="#欧拉-柯西-预估-校正法-predictor-corrector"></a> 欧拉-柯西 预估-校正法 (Predictor-Corrector)</h4>
 <p>这个方法试图在不进行复杂隐式求解的情况下提高精度。它分为两步：</p>
 <ol>
 <li><strong>预估 (Predict)</strong>：使用前向欧拉法得到一个对 $y_{n+1}$ 的初步估计值 $\tilde{y}_{n+1}$。<p>$$\tilde{y}_{n+1} &#x3D; y_n + h f(t_n, y_n) 
@@ -404,6 +404,90 @@ $$</p></li>
 $$</p></li>
 </ol>
 <p>这种方法是<strong>显式</strong>的，但其精度与隐式的Crank-Nicolson法相当。</p>
+<h3 id="单步多阶段方法rungekuttark"><a class="markdownIt-Anchor" href="#单步多阶段方法rungekuttark"></a> 单步多阶段方法：Runge–Kutta（RK）</h3>
+<p>Runge–Kutta 属于单步方法（只依赖最近一步的 $(t_n,y_n)$），但在同一步内通过多个“阶段”评估 $f(t,y)$ 来提高阶数与稳定性。</p>
+<h4 id="经典二阶rk举例"><a class="markdownIt-Anchor" href="#经典二阶rk举例"></a> 经典二阶RK（举例）</h4>
+<ul>
+<li>
+<p>Heun（显式梯形）法：</p>
+<ul>
+<li>$k_1 &#x3D; f(t_n, y_n)$</li>
+<li>$k_2 &#x3D; f(t_n+h,\, y_n + h k_1)$</li>
+<li>$y_{n+1} &#x3D; y_n + \tfrac{h}{2}(k_1 + k_2)$</li>
+</ul>
+</li>
+<li>
+<p>中点法：</p>
+<ul>
+<li>$k_1 &#x3D; f(t_n, y_n)$</li>
+<li>$k_2 &#x3D; f(t_n+\tfrac{h}{2},\, y_n + \tfrac{h}{2} k_1)$</li>
+<li>$y_{n+1} &#x3D; y_n + h\,k_2$</li>
+</ul>
+</li>
+</ul>
+<p>两者均为二阶方法：局部截断误差 $O(h^{3})$，全局误差 $O(h^{2})$。</p>
+<h4 id="经典四阶rkrk4"><a class="markdownIt-Anchor" href="#经典四阶rkrk4"></a> 经典四阶RK（RK4）</h4>
+<p>$$\begin{aligned}
+k_1 &amp;&#x3D; f(t_n, y_n),\\
+k_2 &amp;&#x3D; f\bigl(t_n+\tfrac{h}{2},\, y_n + \tfrac{h}{2} k_1\bigr),\\
+k_3 &amp;&#x3D; f\bigl(t_n+\tfrac{h}{2},\, y_n + \tfrac{h}{2} k_2\bigr),\\
+k_4 &amp;&#x3D; f\bigl(t_n+h,\, y_n + h k_3\bigr),\\
+y_{n+1} &amp;&#x3D; y_n + \tfrac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4).
+\end{aligned}
+$$</p><p>RK4 的局部截断误差为 $O(h^{5})$、全局误差为 $O(h^{4})$，在非刚性问题中是极其常用的高性价比方法。</p>
+<h4 id="butcher-表与阶条件简述"><a class="markdownIt-Anchor" href="#butcher-表与阶条件简述"></a> Butcher 表与阶条件（简述）</h4>
+<p>RK 方法可用 Butcher 表表征各阶段系数。阶条件由代数等式约束这些系数，使方法达到既定阶数（此处略）。</p>
+<h4 id="自适应步长嵌入式对"><a class="markdownIt-Anchor" href="#自适应步长嵌入式对"></a> 自适应步长（嵌入式对）</h4>
+<p>常用的 RKF45、Dormand–Prince（DOPRI5）等提供两个相近阶数的解 $y^{[p]}$ 与 $y^{[p-1]}$ 以估计单步误差 $\Delta$：</p>
+<p>$$\Delta &#x3D; \lVert y^{[p]} - y^{[p-1]} \rVert.
+$$</p><p>据此调整步长，例如</p>
+<p>$$h_{\text{new}} &#x3D; h\;\mathrm{safety}\;\left(\frac{\mathrm{tol}}{\Delta}\right)^{\frac{1}{p+1}}, 
+$$</p><p>并约束放大/缩小因子在合理区间内，以保证效率与稳健性。</p>
+<h4 id="线性测试方程与稳定性区域"><a class="markdownIt-Anchor" href="#线性测试方程与稳定性区域"></a> 线性测试方程与稳定性区域</h4>
+<p>考虑 $y&#39; &#x3D; \lambda y$，令 $z &#x3D; h\lambda$，RK 方法对应的放大因子 $R(z)$ 决定了稳定性区域 $\{z:\,|R(z)|\le 1\}$。显式 RK 的稳定域有界，步长需满足 $h$ 足够小；刚性问题宜选隐式 RK（如 Gauss–Legendre）或下述 BDF。</p>
+<h3 id="线性多步方法lmm"><a class="markdownIt-Anchor" href="#线性多步方法lmm"></a> 线性多步方法（LMM）</h3>
+<p>线性多步法在一步中使用多个历史点来提高阶数，一般形式：</p>
+<p>$$\sum_{j&#x3D;0}^{k} \alpha_j\, y_{n-j} &#x3D; h \sum_{j&#x3D;0}^{k} \beta_j\, f(t_{n-j}, y_{n-j}). 
+$$</p><h4 id="一致性与零稳定性根条件"><a class="markdownIt-Anchor" href="#一致性与零稳定性根条件"></a> 一致性与零稳定性（根条件）</h4>
+<ul>
+<li>一致性（必要条件示例）：$\sum_{j&#x3D;0}^k \alpha_j &#x3D; 0$，且 $\sum_{j&#x3D;0}^k j\alpha_j &#x3D; \sum_{j&#x3D;0}^k \beta_j$。</li>
+<li>零稳定性：特征多项式 $\rho(\xi)&#x3D;\sum_{j&#x3D;0}^k \alpha_j\xi^{k-j}$ 的根均在单位圆内，且在单位圆上的根为单根。零稳定性 + 一致性 ⇒ 收敛。</li>
+</ul>
+<h4 id="adams-家族积分型"><a class="markdownIt-Anchor" href="#adams-家族积分型"></a> Adams 家族（积分型）</h4>
+<ul>
+<li>
+<p>显式 Adams–Bashforth（AB）二阶：</p>
+<p>$$y_{n+1} &#x3D; y_n + h\left(\tfrac{3}{2} f_n - \tfrac{1}{2} f_{n-1}\right). 
+$$</p></li>
+<li>
+<p>隐式 Adams–Moulton（AM）二阶（梯形/Crank–Nicolson）：</p>
+<p>$$y_{n+1} &#x3D; y_n + \tfrac{h}{2}\bigl(f_{n+1} + f_n\bigr). 
+$$</p></li>
+</ul>
+<p>AB/AM 可组成预测–校正对：先用 AB 预测 $\tilde y_{n+1}$，再用 AM 校正 $y_{n+1}$，既保持较低成本又提升精度与稳定性。</p>
+<h4 id="后向差分公式bdf微分型"><a class="markdownIt-Anchor" href="#后向差分公式bdf微分型"></a> 后向差分公式（BDF，微分型）</h4>
+<ul>
+<li>
+<p>BDF1（即后向欧拉，L-稳定）：</p>
+<p>$$\frac{y_{n+1} - y_n}{h} &#x3D; f(t_{n+1}, y_{n+1}). 
+$$</p></li>
+<li>
+<p>BDF2（A-稳定）：</p>
+<p>$$\frac{3y_{n+1} - 4y_n + y_{n-1}}{2h} &#x3D; f(t_{n+1}, y_{n+1}). 
+$$</p></li>
+</ul>
+<p>BDF 对刚性问题表现优异。一般地，BDF 阶数超过 2 时不再 A-稳定，但仍常用于刚性问题的实际工程求解。</p>
+<h4 id="启动策略与实现要点"><a class="markdownIt-Anchor" href="#启动策略与实现要点"></a> 启动策略与实现要点</h4>
+<ul>
+<li>多步法需要前 $k$ 个起始值，通常用高阶 RK 在初段“引导”。</li>
+<li>隐式 AM/BDF 需解非线性方程，可用牛顿或简化牛顿（保持雅可比）。</li>
+<li>自适应步长/阶数：Adams 与 BDF 系列普遍支持按误差估计调整 $h$ 与阶数。</li>
+</ul>
+<h4 id="选择建议非刚性-vs-刚性"><a class="markdownIt-Anchor" href="#选择建议非刚性-vs-刚性"></a> 选择建议（非刚性 vs 刚性）</h4>
+<ul>
+<li>平滑、非刚性：显式 RK（如 RK4、DOPRI5）配合自适应步长，简单稳健。</li>
+<li>刚性：隐式阶梯（CN）、BDF、隐式 RK；必要时使用稀疏/预条件线性代数加速。</li>
+</ul>
 <h3 id="收敛性-稳定性与误差"><a class="markdownIt-Anchor" href="#收敛性-稳定性与误差"></a> 收敛性、稳定性与误差</h3>
 <p>一个好的数值方法必须是收敛的，即当步长 $h \to 0$ 时，数值解要趋近于真实解。收敛性由两个关键因素决定：<strong>一致性</strong>和<strong>稳定性</strong>。</p>
 <h4 id="误差来源"><a class="markdownIt-Anchor" href="#误差来源"></a> 误差来源</h4>
@@ -425,8 +509,8 @@ $$</p></li>
 </ul>
 <h4 id="收敛定理"><a class="markdownIt-Anchor" href="#收敛定理"></a> 收敛定理</h4>
 <p>数值分析中的一个基本定理指出：</p>
-<p align="center" style="font-size:1.5em;"><b>一致性 + 稳定性 = 收敛性</b></p>
-<p>这意味着，一个数值方法要想收敛，它必须既能忠实地近似原方程（一致性），又能有效地控制误差的传播（稳定性）。对于我们上面介绍的几种方法，它们都是收敛的。</p>
+<p>$$\Large \boxed{ \textbf{一致性}\; \boldsymbol{+}\; \textbf{稳定性}\; \boldsymbol{\Rightarrow}\; \textbf{收敛} } 
+$$</p><p>这意味着，一个数值方法要想收敛，它必须既能忠实地近似原方程（一致性），又能有效地控制误差的传播（稳定性）。对于我们上面介绍的几种方法，它们都是收敛的。</p>
 
       
     </div>
@@ -524,10 +608,10 @@ $$</p></li>
     
       <div>
         <span class="icon-brush"></span>
-        15.5k
+        16.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        01:02
+        01:07
       </div>
     
     
@@ -560,7 +644,7 @@ $$</p></li>
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 常微分方程初值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3. Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 4. 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%88%9D%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 常微分方程初值问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E4%B8%8E%E5%94%AF%E4%B8%80%E6%80%A7%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 解的存在性与唯一性理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lipschitz-%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Lipschitz 连续性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cauchy-lipschitz-%E5%AE%9A%E7%90%86-%E5%AD%98%E5%9C%A8%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text"> Cauchy-Lipschitz 定理 (存在唯一性定理)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E4%BB%8E%E8%BF%9E%E7%BB%AD%E5%88%B0%E7%A6%BB%E6%95%A3%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 离散化：从连续到离散的桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> 经典的数值求解方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-forward-euler"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 前向欧拉法 (Forward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%90%91%E6%AC%A7%E6%8B%89%E6%B3%95-backward-euler"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 后向欧拉法 (Backward Euler)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#crank-nicolson-%E6%96%B9%E6%B3%95-%E6%A2%AF%E5%BD%A2%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text"> Crank-Nicolson 方法 (梯形法)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89-%E6%9F%AF%E8%A5%BF-%E9%A2%84%E4%BC%B0-%E6%A0%A1%E6%AD%A3%E6%B3%95-predictor-corrector"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 欧拉-柯西 预估-校正法 (Predictor-Corrector)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%AD%A5%E5%A4%9A%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95rungekuttark"><span class="toc-number">1.4.</span> <span class="toc-text"> 单步多阶段方法：Runge–Kutta（RK）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E4%BA%8C%E9%98%B6rk%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 经典二阶RK（举例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9B%9B%E9%98%B6rkrk4"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 经典四阶RK（RK4）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#butcher-%E8%A1%A8%E4%B8%8E%E9%98%B6%E6%9D%A1%E4%BB%B6%E7%AE%80%E8%BF%B0"><span class="toc-number">1.4.3.</span> <span class="toc-text"> Butcher 表与阶条件（简述）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E6%AD%A5%E9%95%BF%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AF%B9"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 自适应步长（嵌入式对）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%B5%8B%E8%AF%95%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 线性测试方程与稳定性区域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%A4%9A%E6%AD%A5%E6%96%B9%E6%B3%95lmm"><span class="toc-number">1.5.</span> <span class="toc-text"> 线性多步方法（LMM）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E4%B8%8E%E9%9B%B6%E7%A8%B3%E5%AE%9A%E6%80%A7%E6%A0%B9%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 一致性与零稳定性（根条件）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#adams-%E5%AE%B6%E6%97%8F%E7%A7%AF%E5%88%86%E5%9E%8B"><span class="toc-number">1.5.2.</span> <span class="toc-text"> Adams 家族（积分型）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%90%91%E5%B7%AE%E5%88%86%E5%85%AC%E5%BC%8Fbdf%E5%BE%AE%E5%88%86%E5%9E%8B"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 后向差分公式（BDF，微分型）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%AD%96%E7%95%A5%E4%B8%8E%E5%AE%9E%E7%8E%B0%E8%A6%81%E7%82%B9"><span class="toc-number">1.5.4.</span> <span class="toc-text"> 启动策略与实现要点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE%E9%9D%9E%E5%88%9A%E6%80%A7-vs-%E5%88%9A%E6%80%A7"><span class="toc-number">1.5.5.</span> <span class="toc-text"> 选择建议（非刚性 vs 刚性）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7-%E7%A8%B3%E5%AE%9A%E6%80%A7%E4%B8%8E%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.6.</span> <span class="toc-text"> 收敛性、稳定性与误差</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 误差来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 一致性 (Consistency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7-stability"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 稳定性 (Stability)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 收敛定理</span></a></li></ol></li></ol></li></ol>
       
   </div>
 </div>
@@ -727,7 +811,7 @@ $$</p></li>
           description: "",
           stripContent: " 常微分方程初值问题 许多物理、工程和经济学中的动态系统都可以用常微分方程 (Ordinary Differential Equations, ODEs) 来描述。一个典型的一阶ODE具有以下形式： $$y&amp;#39;(t) &amp;#x3D; f(t, y(t)) $$这个方程描述了变量 $y$ 随时间 $t$ 变化的速率。 然而，仅有这个方程不足以确定系统的具体行为，因为它有无穷多个可能的解。为了得到一个唯一的解，我们还需要一个初始状态，即初值条件 (Initial Condition)： $$y(",
           date: "Wed Oct 15 2025 18:14:00 GMT+0800",
-          updated: "Wed Oct 15 2025 19:04:21 GMT+0800",
+          updated: "Thu Oct 16 2025 00:24:29 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
