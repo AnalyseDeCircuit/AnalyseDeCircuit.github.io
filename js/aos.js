@@ -14,7 +14,6 @@ var debounce = (func, delay) => {
 var __aosScrollHandler;
 var __aosResizeHandler;
 var __observer;
-var __aosBodyResizeObserver;
 
 (() => {
   let options = {
@@ -222,12 +221,6 @@ var __aosBodyResizeObserver;
     window.on("scroll", __aosScrollHandler);
 
     observe(refreshHard);
-
-    if (window.ResizeObserver && _$("#main")) {
-      __aosBodyResizeObserver?.disconnect?.();
-      __aosBodyResizeObserver = new ResizeObserver(debounce(() => refresh(), options.debounceDelay));
-      __aosBodyResizeObserver.observe(_$("#main"));
-    }
 
     return $aosElements;
   };

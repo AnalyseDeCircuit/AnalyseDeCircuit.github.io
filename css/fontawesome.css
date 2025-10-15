@@ -1,5 +1,5 @@
 :root {
-  --font-icon: "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome";
+  --font-icon: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome";
 }
 .archives-tag-list-link:before {
   font-family: var(--font-icon);
@@ -12,12 +12,10 @@
 .article-date-link:before {
   font-family: var(--font-icon);
   content: "\f017";
-  font-weight: 900;
 }
 .article-category-link:before {
   font-family: var(--font-icon);
   content: "\f02e";
-  font-weight: 900;
 }
 .article-tag-list-link:before {
   font-family: var(--font-icon);
@@ -26,7 +24,6 @@
 .article-comment-link:before {
   font-family: var(--font-icon);
   content: "\f075";
-  font-weight: 900;
 }
 .icon-copyright:before {
   font-family: var(--font-icon);
@@ -43,12 +40,10 @@
 .icon-eye:before {
   font-family: var(--font-icon);
   content: "\f06e";
-  font-weight: 900;
 }
 .icon-user:before {
   font-family: var(--font-icon);
   content: "\f007";
-  font-weight: 900;
 }
 #main-nav-toggle:before {
   font-family: var(--font-icon);
@@ -65,12 +60,10 @@
 #nav-sun-btn:before {
   font-family: var(--font-icon);
   content: "\f185";
-  font-weight: 900;
 }
 #nav-moon-btn:before {
   font-family: var(--font-icon);
   content: "\f186";
-  font-weight: 900;
 }
 #nav-circle-half-stroke-btn:before {
   font-family: var(--font-icon);
@@ -98,13 +91,7 @@
 }
 .icon-calendar:before {
   font-family: var(--font-icon);
-  content: "\f133";
-  font-weight: 900;
-}
-.icon-calendar-plus:before {
-  font-family: var(--font-icon);
-  content: "\f271";
-  font-weight: 900;
+  content: "\f073";
 }
 .icon-pencil:before {
   font-family: var(--font-icon);
@@ -113,17 +100,14 @@
 .icon-clock:before {
   font-family: var(--font-icon);
   content: "\f252";
-  font-weight: 900;
 }
 .post-sticky:before {
   font-family: var(--font-icon);
   content: "\f164";
-  font-weight: 900;
 }
 .popup-btn-close:before {
   font-family: var(--font-icon);
   content: "\f057";
-  font-weight: 900;
 }
 .reimu-search-input-icon:before {
   font-family: var(--font-icon);
@@ -137,11 +121,14 @@
   font-family: var(--font-icon);
   content: "\f105";
 }
-.sidebar-toc-btn:before {
+.icon-github:before {
+  content: "\f09b";
+}
+.sidebar-btn-wrapper .sidebar-toc-btn:before {
   font-family: var(--font-icon);
   content: "\f0e8";
 }
-.sidebar-common-btn:before {
+.sidebar-btn-wrapper .sidebar-common-btn:before {
   font-family: var(--font-icon);
   content: "\e3af";
 }
@@ -156,7 +143,6 @@
 .icon-globe:before {
   font-family: var(--font-icon);
   content: "\f0ac";
-  font-weight: 900;
 }
 .icon-creative-commons:before {
   font-family: var(--font-icon);
@@ -169,7 +155,6 @@
 .icon-image:before {
   font-family: var(--font-icon);
   content: "\f03e";
-  font-weight: 900;
 }
 .icon {
   font-family: var(--font-icon);
