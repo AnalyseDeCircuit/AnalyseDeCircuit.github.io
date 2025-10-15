@@ -43,7 +43,7 @@
 <meta property="og:description" content="信号与系统中的三大变换简单介绍：Fourier, Laplace, Z 在信号处理、控制理论、通信和许多其他工程与科学领域，为了更方便地分析和处理信号与系统，我们常常需要将信号从其自然存在的时域转换到另一个数学上更易于操作的域——频域或复频域。傅里叶变换、拉普拉斯变换和Z变换是实现这种转换的最核心、最强大的数学工具。  傅里叶变换：处理稳定的连续时间信号，将其分解为不同频率的正弦波分量。 拉普拉">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-15T10:31:53.000Z">
-<meta property="article:modified_time" content="2025-10-15T10:51:30.445Z">
+<meta property="article:modified_time" content="2025-10-15T16:02:20.666Z">
 <meta property="article:author" content="LaTerrasse">
 <meta property="article:tag" content="Signal&amp;System">
 <meta name="twitter:card" content="summary">
@@ -342,7 +342,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-10-15T10:31:53.000Z" itemprop="datePublished">2025-10-15</time>
-    <time style="display: none;" id="post-update-time">2025-10-15</time>
+    <time style="display: none;" id="post-update-time">2025-10-16</time>
   </span>
 </div>
 
@@ -398,8 +398,8 @@ $$</p><h3 id="收敛要求-狄利克雷条件"><a class="markdownIt-Anchor" href
 <tr>
 <td style="text-align:left"><strong>尺度变换</strong></td>
 <td style="text-align:left">$f(at)$</td>
-<td style="text-align:left">$\frac{1}{</td>
-<td style="text-align:left">a</td>
+<td style="text-align:left">$\frac{1}{\lvert a \rvert} F\left(\frac{\omega}{a}\right)$</td>
+<td style="text-align:left">时域压缩 ($\lvert a \rvert&gt;1$) 导致频域展宽；时域展宽 ($\lvert a \rvert&lt;1$) 导致频域压缩。</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>时移</strong></td>
@@ -647,8 +647,8 @@ $$</p><p>其中 $z$ 是一个复变量。可以看作是 $x[n]$ 的每一项都�
 <ol>
 <li>ROC是一个以原点为中心的圆环。</li>
 <li>ROC内不包含任何极点。</li>
-<li>对于<strong>右边序列</strong>（如因果序列 $n&lt;0, x[n]&#x3D;0$），ROC在最外层极点的外部，即 $|z| &gt; |p_{max}|$。</li>
-<li>对于<strong>左边序列</strong>，ROC在最内层非零极点的内部，即 $|z| &lt; |p_{min}|$。</li>
+<li>对于<strong>右边序列</strong>（如因果序列 $n&lt;0, x[n]&#x3D;0$），ROC在最外层极点的外部，即 $\lvert z \rvert &gt; \lvert p_{max} \rvert$。</li>
+<li>对于<strong>左边序列</strong>，ROC在最内层非零极点的内部，即 $\lvert z \rvert &lt; \lvert p_{min} \rvert$。</li>
 <li>对于<strong>有限长序列</strong>，ROC是整个Z平面，可能除去 $z&#x3D;0$ 或 $z&#x3D;\infty$。</li>
 </ol>
 </li>
@@ -748,32 +748,32 @@ $$</p><h3 id="常见变换对-3"><a class="markdownIt-Anchor" href="#常见变�
 <tr>
 <td style="text-align:left">$u[n]$</td>
 <td style="text-align:left">$\frac{z}{z-1}$</td>
-<td style="text-align:left">$</td>
+<td style="text-align:left">$\lvert z \rvert &gt; 1$</td>
 </tr>
 <tr>
 <td style="text-align:left">$a^n u[n]$</td>
 <td style="text-align:left">$\frac{z}{z-a}$</td>
-<td style="text-align:left">$</td>
+<td style="text-align:left">$\lvert z \rvert &gt; \lvert a \rvert$</td>
 </tr>
 <tr>
 <td style="text-align:left">$n u[n]$</td>
 <td style="text-align:left">$\frac{z}{(z-1)^2}$</td>
-<td style="text-align:left">$</td>
+<td style="text-align:left">$\lvert z \rvert &gt; 1$</td>
 </tr>
 <tr>
 <td style="text-align:left">$n a^n u[n]$</td>
 <td style="text-align:left">$\frac{az}{(z-a)^2}$</td>
-<td style="text-align:left">$</td>
+<td style="text-align:left">$\lvert z \rvert &gt; \lvert a \rvert$</td>
 </tr>
 <tr>
 <td style="text-align:left">$\cos(\omega_0 n)u[n]$</td>
 <td style="text-align:left">$\frac{z(z-\cos(\omega_0))}{z^2-2z\cos(\omega_0)+1}$</td>
-<td style="text-align:left">$</td>
+<td style="text-align:left">$\lvert z \rvert &gt; 1$</td>
 </tr>
 <tr>
 <td style="text-align:left">$\sin(\omega_0 n)u[n]$</td>
 <td style="text-align:left">$\frac{z\sin(\omega_0)}{z^2-2z\cos(\omega_0)+1}$</td>
-<td style="text-align:left">$</td>
+<td style="text-align:left">$\lvert z \rvert &gt; 1$</td>
 </tr>
 </tbody>
 </table>
@@ -858,7 +858,7 @@ $$</p><h3 id="常见变换对-3"><a class="markdownIt-Anchor" href="#常见变�
     
       <div>
         <span class="icon-brush"></span>
-        15.4k
+        15.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
         01:02
@@ -1061,7 +1061,7 @@ $$</p><h3 id="常见变换对-3"><a class="markdownIt-Anchor" href="#常见变�
           description: "",
           stripContent: " 信号与系统中的三大变换简单介绍：Fourier, Laplace, Z 在信号处理、控制理论、通信和许多其他工程与科学领域，为了更方便地分析和处理信号与系统，我们常常需要将信号从其自然存在的时域转换到另一个数学上更易于操作的域——频域或复频域。傅里叶变换、拉普拉斯变换和Z变换是实现这种转换的最核心、最强大的数学工具。  傅里叶变换：处理稳定的连续时间信号，将其分解为不同频率的正弦波分量。 拉普拉斯变换：处理不稳定或因果的连续时间信号，是傅里叶变换的推广。 Z变换：处理离散时间信号，是拉普拉斯变",
           date: "Wed Oct 15 2025 18:31:53 GMT+0800",
-          updated: "Wed Oct 15 2025 18:51:30 GMT+0800",
+          updated: "Thu Oct 16 2025 00:02:20 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
