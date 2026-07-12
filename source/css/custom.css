@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
+@import url('https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css');
+
+/* Cinzel is licensed under the SIL Open Font License, Version 1.1. */
+.roman-motto {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
