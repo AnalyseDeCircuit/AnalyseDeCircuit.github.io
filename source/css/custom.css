@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
 @import url('https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@600;700&display=swap');
 
 /* Cinzel is licensed under the SIL Open Font License, Version 1.1. */
 .roman-motto {
@@ -10,7 +11,11 @@
   letter-spacing: 0.08em;
 }
 
-/* Noto Serif SC is distributed under the SIL Open Font License, Version 1.1. */
-.markdown-body {
+/* Noto Serif SC and Noto Sans SC are distributed under the SIL Open Font License, Version 1.1. */
+body {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', SimSun, serif;
+}
+
+.index-header {
+  font-family: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
